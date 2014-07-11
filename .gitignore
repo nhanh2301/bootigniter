@@ -1,9 +1,53 @@
+# Ignore OS Related/Generic
+Thumbs.db
+Desktop.ini
 .DS_Store
+_*
+.*
+*.bak
+*.lock
+*.tmproj
+*.tmproject
+*.diff
+*.err
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.vi
+*.old
+*~
 
-application/cache/*
-!application/cache/index.html
-!application/cache/.htaccess
+# IDEs project files/settings
+nbproject/
+nbactions.xml
+.settings/
+.project
+.metadata
+.properties
+.tmproj
+*.esproj
+.codeintel
+*.sublime-*
+*.komodoproject
+.komodotools
+.idea/
 
-application/logs/*
-!application/logs/index.html
-!application/logs/.htaccess
+# Dependencies Folder
+/node_modules/
+/bower_components/
+/vendor/
+
+# Ignore Application Specifics
+/application/storage/cache/*
+/application/storage/logs/*
+
+# but leave there Application Specifics
+!.htaccess
+!index.html
+!.git*
+!.travis.yml
+!.editorconfig
+!.csslintrc
+!.csscomb.json

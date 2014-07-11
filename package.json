@@ -1,0 +1,43 @@
+{
+  "name": "codeigniter",
+  "version": "2.2.0",
+  "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
+  "license": "OSL",
+  "readmeFilename": "README.md",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feryardiant/codeigniter"
+  },
+  "author": [
+    {
+      "name": "Fery Wardiyanto",
+      "email": "ferywardiyanto@gmail.com"
+    }
+  ],
+  "keywords": [
+    "codeigniter",
+    "application"
+  ],
+  "support": {
+    "issues": "https://github.com/feryardiant/codeigniter/issues"
+  },
+  "engines": {
+    "node": "~0.10.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-php": "~0.3.2",
+    "grunt-autoprefixer": "~0.7.2",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-cssmin": "~0.9.0",
+    "grunt-contrib-csslint": "~0.2.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-csscomb": "~2.0.1",
+    "grunt-phpunit": "^0.3.3",
+    "grunt-phplint": "^0.0.5",
+    "load-grunt-tasks": "~0.4.0",
+    "time-grunt": "~0.3.1"
+  }
+}

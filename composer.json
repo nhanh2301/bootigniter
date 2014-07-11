@@ -1,0 +1,32 @@
+{
+  "name": "feryardiant/codeigniter",
+  "version": "2.2.0",
+  "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
+  "license": "OSL",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feryardiant/codeigniter"
+  },
+  "author": [
+    {
+      "name": "Fery Wardiyanto",
+      "email": "ferywardiyanto@gmail.com"
+    }
+  ],
+  "keywords": [
+    "codeigniter",
+    "application"
+  ],
+  "support": {
+    "issues": "https://github.com/feryardiant/codeigniter/issues"
+  },
+  "require": {
+      "php": ">=5.2.4"
+  },
+  "require-dev": {
+      "phpunit/phpunit": "4.1.0",
+      "phpunit/dbunit": ">=1.2",
+      "mikey179/vfsStream": "1.1.*"
+  },
+  "minimum-stability": "dev"
+}

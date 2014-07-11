@@ -1,5 +1,10 @@
+language: php
+php:
+  - '5.5'
+  - '5.4'
+  - '5.3'
+matrix:
+  fast_finish: true
 branches:
-  except:
-    - 2.1-stable
-    - 2.2-stable
+  only:
     - master

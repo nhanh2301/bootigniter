@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<phpunit
+    bootstrap="application/tests/bootstrap.php"
+    colors="true"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="false"
+    stopOnError="false"
+    stopOnFailure="false"
+    stopOnIncomplete="false"
+    stopOnSkipped="false"
+    verbose="valse">
+    <php>
+        <const name="PHPUNIT_TEST" value="1" />
+        <server name="REMOTE_ADDR" value="0.0.0.0" />
+    </php>
+    <testsuites>
+        <testsuite name="Baka Pack Test Suite">
+            <directory surfix="Test.php">application/tests/core</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <blacklist>
+            <directory suffix=".php">system</directory>
+            <directory suffix=".php">vendor</directory>
+        </blacklist>
+    </filter>
+</phpunit>
