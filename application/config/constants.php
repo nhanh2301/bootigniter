@@ -36,6 +36,27 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+/*
+|--------------------------------------------------------------------------
+| Define AJAX Request
+|--------------------------------------------------------------------------
+*/
+define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
+/*
+|--------------------------------------------------------------------------
+| Define CLI Request
+|--------------------------------------------------------------------------
+*/
+define('IS_CLI', php_sapi_name() === 'cli' OR defined('STDIN'));
+
+/*
+|--------------------------------------------------------------------------
+| Others
+|--------------------------------------------------------------------------
+*/
+define('DS', DIRECTORY_SEPARATOR);
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
