@@ -16,10 +16,13 @@ CodeIgniter is an Application Development Framework - a toolkit - for people who
 
 ## Changelog
 
-* 2014-07-12
+* **1.0.0 2014-07-12**
   * Initial version based on Codeigniter 2.2.0
   * :fire: up modifications
   * Adding [codeigniter-phpunit](https://github.com/fmalk/codeigniter-phpunit) for Unit Testing
+  * Adding [composer](http://getcomposer.org) for Unit Back-end PHP unit-test dependency
+  * Installing [bower](http://bower.io) for Unit Front-end dependency manager
+  * Installing [grunt](http://gruntjs.com) for Unit whole app build process
 
 ## Credits
 
