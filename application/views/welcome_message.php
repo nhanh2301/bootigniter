@@ -35,18 +35,17 @@
 
 <!-- Begin page content -->
 <div class="container">
-	<div class="page-header">
-		<h1>Welcome to CodeIgniter!r</h1>
-	</div>
-	<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
-
-	<p>If you would like to edit this page you'll find it located at:</p>
-	<pre>application/views/welcome_message.php</pre>
-
-	<p>The corresponding controller for this page is found at:</p>
-	<pre>application/controllers/welcome.php</pre>
-
-	<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+	<header class="page-header">
+		<h1>Welcome to CodeIgniter!</h1>
+	</header>
+	<section>
+		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+		<p>If you would like to edit this page you'll find it located at:</p>
+		<pre>application/views/welcome_message.php</pre>
+		<p>The corresponding controller for this page is found at:</p>
+		<pre>application/controllers/welcome.php</pre>
+		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+	</section>
 </div>
 
 <footer>
@@ -59,7 +58,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="<?php echo base_url('asset/lib/jquery/dist/jquery.min.js') ?>"></script>
 <script src="<?php echo base_url('asset/lib/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 
 </body>
