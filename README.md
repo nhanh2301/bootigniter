@@ -1,5 +1,7 @@
 # CodeIgniter
 
+[![Build Status](https://travis-ci.org/feryardiant/codeigniter.svg?branch=master)](https://travis-ci.org/feryardiant/codeigniter)
+
 ## What is this repo?
 
 This repo is just fork from [EllisLab/CodeIgniter](https://github.com/EllisLab/CodeIgniter) v2.2.0 but come with additional modification based on my own needs.
