@@ -36,7 +36,7 @@ nbactions.xml
 
 # Dependencies Folder
 /node_modules/
-/bower_components/
+/asset/lib/
 /vendor/
 
 # Ignore Application Specifics
