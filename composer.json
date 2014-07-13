@@ -23,6 +23,9 @@
   "support": {
     "issues": "https://github.com/feryardiant/bootigniter/issues"
   },
+  "scripts": {
+    "post-create-project-cmd": "npm install"
+  },
   "require": {
       "php": ">=5.2.4"
   },
