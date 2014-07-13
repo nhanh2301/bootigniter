@@ -48,5 +48,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
   require('time-grunt')(grunt);
 
+  grunt.registerTask('phptest', ['phpunit', 'phplint']);
+
   grunt.registerTask('default', ['php']);
 }

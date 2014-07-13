@@ -65,6 +65,30 @@ You're on fire now.
 
 Your code has been ignited right now.
 
+## Uses
+
+### Preview in the browser
+
+```bash
+$ grunt php
+```
+
+### PHP Lint and Test Unit
+
+```bash
+$ grunt phptest
+```
+
+### Watch all changes
+
+```bash
+$ grunt watch
+```
+
+### JS & CSS
+
+#### SOON :grin:
+
 ## Changelog
 
 See [here](https://github.com/feryardiant/bootigniter/releases).
