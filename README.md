@@ -46,7 +46,7 @@ You're on fire now.
 1. Download and extract this package
 
    ```bash
-   $ wget https://github.com/feryardiant/bootigniter/archive/1.0.1.tar.gz -qO - | tar xz
+   $ wget https://github.com/feryardiant/bootigniter/archive/master.tar.gz -qO - | tar xz | shopt -s dotglob && cp -rf bootigniter-master/* . && rm -rf bootigniter-master/
    ```
 
    That's assuming you have `wget` installed on your system, but if not just simply click this [download link](https://github.com/feryardiant/bootigniter/archive/1.0.1.tar.gz)
