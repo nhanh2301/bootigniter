@@ -1,21 +1,15 @@
-# CodeIgniter
+# BootIgniter
 
 [![Build Status](https://travis-ci.org/feryardiant/codeigniter.svg?branch=master)](https://travis-ci.org/feryardiant/codeigniter)
 
-## What is this repo?
-
-This repo is just fork from [EllisLab/CodeIgniter](https://github.com/EllisLab/CodeIgniter) v2.2.0 but come with additional modification based on my own needs.
-
-## What is CodeIgniter?
-
-CodeIgniter is an Application Development Framework - a toolkit - for people who build web sites using PHP. Read more about CodeIgniter [here](http://ellislab.com/codeignite).
+An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all, Developers & Designers. It is a Lightweight Open codes package for you to build your own Custom Codeigniter-based application, instead of customize & removing unnecessary features.
 
 ## Installation
 
 #### Using Composer
 
 ```bash
-$ composer create-project feryardiant/codeigniter <foldername>
+$ composer create-project feryardiant/bootigniter <foldername>
 ```
 
 #### Download and extract manually
@@ -29,10 +23,10 @@ $ mkdir <foldername> && cd <foldername>
 Download and extract this package
 
 ```bash
-$ wget https://github.com/feryardiant/codeigniter/archive/1.0.0.tar.gz -qO - | tar xz
+$ wget https://github.com/feryardiant/bootigniter/archive/1.0.0.tar.gz -qO - | tar xz
 ```
 
-That's assuming you have `wget` installed on your system, but if not just simple click this [download link](https://github.com/feryardiant/codeigniter/archive/1.0.0.tar.gz)
+That's assuming you have `wget` installed on your system, but if not just simple click this [download link](https://github.com/feryardiant/bootigniter/archive/1.0.0.tar.gz)
 
 #### Install Composer vendors for PHP test unit
 
@@ -62,7 +56,7 @@ If you're not familiar with NPM or Node.JS, take a look their [official site](ht
 
 ## Changelog
 
-See [here](https://github.com/feryardiant/codeigniter/releases).
+See [here](https://github.com/feryardiant/bootigniter/releases).
 
 ## Credits
 

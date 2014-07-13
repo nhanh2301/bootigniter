@@ -1,11 +1,11 @@
 {
-  "name": "feryardiant/codeigniter",
+  "name": "feryardiant/bootigniter",
   "version": "1.0.0",
   "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
   "license": "OSL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/feryardiant/codeigniter"
+    "url": "https://github.com/feryardiant/bootigniter"
   },
   "author": [
     {
@@ -19,9 +19,9 @@
     "application",
     "package"
   ],
-  "homepage": "https://github.com/feryardiant/codeigniter",
+  "homepage": "https://github.com/feryardiant/bootigniter",
   "support": {
-    "issues": "https://github.com/feryardiant/codeigniter/issues"
+    "issues": "https://github.com/feryardiant/bootigniter/issues"
   },
   "require": {
       "php": ">=5.2.4"

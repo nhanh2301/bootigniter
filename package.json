@@ -1,5 +1,5 @@
 {
-  "name": "codeigniter",
+  "name": "bootigniter",
   "version": "1.0.0",
   "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
   "license": "OSL",
@@ -7,7 +7,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/feryardiant/codeigniter"
+    "url": "https://github.com/feryardiant/bootigniter"
   },
   "author": [
     {
@@ -22,7 +22,7 @@
     "package"
   ],
   "support": {
-    "issues": "https://github.com/feryardiant/codeigniter/issues"
+    "issues": "https://github.com/feryardiant/bootigniter/issues"
   },
   "engines": {
     "node": "~0.10.1"
