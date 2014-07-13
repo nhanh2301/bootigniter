@@ -40,6 +40,7 @@ nbactions.xml
 /vendor/
 
 # Ignore Application Specifics
+/application/storage/uploads/*
 /application/storage/cache/*
 /application/storage/logs/*
 

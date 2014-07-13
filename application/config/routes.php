@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( !defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -38,8 +38,30 @@
 |
 */
 
+// Basic Routing
+// -----------------------------------------------------------------------------
+
+// Default controller
 $route['default_controller'] = "welcome";
-$route['404_override'] = '';
+
+// Overiding 404 page not found
+$route['404_override'] = 'error/notice/404';
+
+// Users Authentication
+// -----------------------------------------------------------------------------
+
+// login route
+$route['login']                 = "auth/login";
+// logout route
+$route['logout']                = "auth/logout";
+// register route
+$route['register']              = "auth/register";
+// resend route
+$route['resend']                = "auth/resend";
+// activate route
+$route['activate']              = "auth/activate";
+// forgot route
+$route['forgot']                = "auth/forgot";
 
 
 /* End of file routes.php */

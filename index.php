@@ -175,6 +175,11 @@ if (defined('ENVIRONMENT'))
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
 
+	if ( file_exists(FCPATH.'config'.EXT) )
+	{
+		require FCPATH.'config'.EXT;
+	}
+
 
 	// The path to the "application" folder
 	if (is_dir($application_folder))

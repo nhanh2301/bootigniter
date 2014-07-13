@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/feryardiant/bootigniter.svg?branch=master)](https://travis-ci.org/feryardiant/bootigniter)
 
-An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all, Developers & Designers. It is a Lightweight Open codes package for you to build your own Custom Codeigniter-based application, instead of customize & removing unnecessary features.
+A [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all Developers & Designers. It is a Lightweight Open Source package for you to build your own Custom Codeigniter-based application, instead of customize & remove unnecessary features.
 
 ## Disclaimer
 
@@ -12,7 +12,7 @@ An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerpl
 
 1. **PHP version 5.3 or newer**
 
-   By default CodeIgniter can be run on PHP version 5.2.4 ([as minimum requirement](https://github.com/EllisLab/CodeIgniter/#server-requirements)) but in order to use PHPUnit and some order dependencies through composer, I recommend to use 5.3 or newer
+   By default, CodeIgniter can be run on PHP version 5.2.4 ([as minimum requirement](https://github.com/EllisLab/CodeIgniter/#server-requirements)) but in order to use PHPUnit and some order dependencies through composer, I recommend to use 5.3 or newer
 
 2. **Composer**
 
@@ -20,7 +20,7 @@ An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerpl
 
 3. **Node.JS**
 
-   In this case because I use [Grunt.JS](http://gruntjs.com) and [Bower](http://bower.io) I need Node.JS already installed. If you're not familiar with Node.JS, take a look at their [official site](http://nodejs.org/) for more informations.
+   In this case because I use [Grunt.JS](http://gruntjs.com) and [Bower](http://bower.io), I need Node.JS already installed. If you're not familiar with Node.JS, take a look at their [official site](http://nodejs.org/) for more informations.
 
 ## Installation
 
@@ -33,7 +33,7 @@ $ cd <foldername>
 
 #### Install using Composer
 
-I assuming you're inside of directory that has been created above.
+I assume you're inside of the directory that has been created above.
 
 ```bash
 $ composer create-project feryardiant/bootigniter .
