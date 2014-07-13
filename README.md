@@ -4,55 +4,66 @@
 
 An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all, Developers & Designers. It is a Lightweight Open codes package for you to build your own Custom Codeigniter-based application, instead of customize & removing unnecessary features.
 
+## Disclaimer
+
+**THIS PACKAGE IS FOR MY PERSONAL USE ONLY, that's it!**
+
+## Requirements
+
+1. **PHP version 5.3 or newer**
+
+   By default CodeIgniter can be run on PHP version 5.2.4 ([as minimum requirement](https://github.com/EllisLab/CodeIgniter/#server-requirements)) but in order to use PHPUnit and some order dependencies through composer, I recommend to use 5.3 or newer
+
+2. **Composer**
+
+   Make sure you have Composer installed on your machine. If you don't have it installed, grab it from their [official site](https://getcomposer.org/download/).
+
+3. **Node.JS**
+
+   In this case because I use [Grunt.JS](http://gruntjs.com) and [Bower](http://bower.io) I need Node.JS already installed. If you're not familiar with Node.JS, take a look at their [official site](http://nodejs.org/) for more informations.
+
 ## Installation
 
-#### Using Composer
+#### Create a directory and `cd` into it.
 
 ```bash
-$ composer create-project feryardiant/bootigniter <foldername>
+$ mkdir <foldername>
+$ cd <foldername>
 ```
 
-#### Download and extract manually
+#### Install using Composer
 
-Create a new folder and `cd` into it
+I assuming you're inside of directory that has been created above.
 
 ```bash
-$ mkdir <foldername> && cd <foldername>
+$ composer create-project feryardiant/bootigniter .
 ```
 
-Download and extract this package
+You're on fire now.
 
-```bash
-$ wget https://github.com/feryardiant/bootigniter/archive/1.0.0.tar.gz -qO - | tar xz
-```
+#### Download manually
 
-That's assuming you have `wget` installed on your system, but if not just simple click this [download link](https://github.com/feryardiant/bootigniter/archive/1.0.0.tar.gz)
+1. Download and extract this package
 
-#### Install Composer vendors for PHP test unit
+   ```bash
+   $ wget https://github.com/feryardiant/bootigniter/archive/1.0.1.tar.gz -qO - | tar xz
+   ```
 
-**Please note**: I you install it using composer, you can skip this step.
+   That's assuming you have `wget` installed on your system, but if not just simply click this [download link](https://github.com/feryardiant/bootigniter/archive/1.0.1.tar.gz)
 
-```bash
-$ composer install
-```
+2. Install Composer Dependencies
 
-#### Install npm_modules for build process
+   ```bash
+   $ composer install
+   ```
 
-```bash
-$ npm install
-```
+3. Install NPM Dependencies
 
-If you're not familiar with NPM or Node.JS, take a look their [official site](http://nodejs.org/) for more informations.
+   ```bash
+   $ npm install
+   ```
 
-#### Install bower_componens for front-end dependencies
-
-Make sure you have `bower` installed globally on your system already, but if not simply run this command below and you got it installed in few second, or check [their website](http://bower.io/#install-bower) out for more information
-
-```bash
-$ bower install
-```
-
-If you're not familiar with NPM or Node.JS, take a look their [official site](http://nodejs.org/) for more informations.
+Your code has been ignited right now.
 
 ## Changelog
 
@@ -62,25 +73,9 @@ See [here](https://github.com/feryardiant/bootigniter/releases).
 
 + [Ellislab and all contributors of Codeigniter](https://github.com/EllisLab/CodeIgniter)
 + [codeigniter-phpunit](https://github.com/fmalk/codeigniter-phpunit)
-+ [Bower Componen](http://bower.io)
-  + [jQuery](http://jquery.com) and [jQuery UI](http://jqueryui.com)
-  + [jQuery Autosize](http://www.jacklmoore.com/autosize)
-  + [jQuery mousewheel](http://brandon.aaron.sh)
-  + [jQuery Touch punch](http://touchpunch.furf.com)
-  + [Twitter Bootstrap](http://getbootstrap.com)
-  + [Bootstrap Datepicker](http://www.eyecon.ro/bootstrap-datepicker)
-  + [Bootstrap Switch](http://www.bootstrap-switch.org)
-  + [Bootstrap Select](http://silviomoreto.github.com/bootstrap-select/3)
-  + [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
-  + [Select2](http://ivaynberg.github.io/select2/)
++ [Bower Components](http://bower.io), *See my [bower.json](../master/bower.json)*
++ [Node Modules](http://npmjs.org), *See my [package.json](../master/package.json)*
 
 ## Copyright and license
 
 **Various trademarks and licenses held by their respective owners.**
-
-## Resources
-
-- [User Guide](http://ellislab.com/codeigniter/user_guide/)
-- [Community Forums](http://ellislab.com/forums/)
-- [Community Wiki](https://github.com/EllisLab/CodeIgniter/wiki/)
-- [Community IRC](http://ellislab.com/codeigniter/irc)
