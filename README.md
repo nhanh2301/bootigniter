@@ -1,6 +1,6 @@
 # BootIgniter
 
-[![Build Status](https://travis-ci.org/feryardiant/codeigniter.svg?branch=master)](https://travis-ci.org/feryardiant/codeigniter)
+[![Build Status](https://travis-ci.org/feryardiant/bootigniter.svg?branch=master)](https://travis-ci.org/feryardiant/bootigniter)
 
 An [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all, Developers & Designers. It is a Lightweight Open codes package for you to build your own Custom Codeigniter-based application, instead of customize & removing unnecessary features.
 
