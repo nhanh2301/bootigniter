@@ -1,3 +1,4 @@
 {
-  "directory": "asset/lib"
+  "directory": "asset/lib",
+  "interactive": false
 }
