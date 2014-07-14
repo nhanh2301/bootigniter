@@ -49,9 +49,9 @@ class MY_Exceptions extends CI_Exceptions
         }
 
         ob_start();
-        include( APPPATH.'views/layouts/header'.EXT );
+        if ( !IS_CLI ) include( APPPATH.'views/layouts/header'.EXT );
         include( $this->_template_path.$template.$alt.EXT );
-        include( APPPATH.'views/layouts/footer'.EXT );
+        if ( !IS_CLI ) include( APPPATH.'views/layouts/footer'.EXT );
         $buffer = ob_get_contents();
         ob_end_clean();
 
