@@ -8,6 +8,11 @@ class BiauthHelperTest extends PHPUnit_Framework_TestCase
     {
         $CI =& get_instance();
     }
+
+    public function testIsThatTrue()
+    {
+        $this->assertTrue(TRUE);
+    }
 }
 
 ?>

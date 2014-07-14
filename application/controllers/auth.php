@@ -6,7 +6,7 @@ class Auth extends MY_Controller
     {
         parent::__construct();
 
-        $this->load->library('biform');
+     $this->load->library('biform');
     }
 
     public function index()

@@ -25,13 +25,13 @@ $config['biasset_path_prefix'] = 'asset/';
 
 $config['biasset_autoload']['style'] = array(
     'bootstrap'   => 'lib/bootstrap/dist/css/bootstrap.min.css',
-    'bootigniter' => 'css/style.css',
+    'bootigniter' => 'css/bootigniter.min.css',
     );
 
 $config['biasset_autoload']['script'] = array(
     'jquery'      => 'lib/jquery/dist/jquery.min.js',
     'bootstrap'   => 'lib/bootstrap/dist/js/bootstrap.min.js',
-    'bootigniter' => 'js/script.js',
+    'bootigniter' => 'js/bootigniter.min.js',
     );
 
 

@@ -1,12 +1,17 @@
 <?php
 
-class BiformHelperTest extends PHPUnit_Framework_TestCase
+class BithemeHelperTest extends PHPUnit_Framework_TestCase
 {
     private $CI;
 
     public static function setUpBeforeClass()
     {
         $CI =& get_instance();
+    }
+
+    public function testIsThatTrue()
+    {
+        $this->assertTrue(TRUE);
     }
 }
 
