@@ -52,4 +52,6 @@ nbactions.xml
 !.editorconfig
 !.csslintrc
 !.csscomb.json
+!.jshintrc
+!.jscsrc
 !.bowerrc
