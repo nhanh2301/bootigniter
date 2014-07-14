@@ -10,7 +10,7 @@ before_install:
 install:
   - npm install
 script:
-  - grunt phptest
+  - grunt build
 matrix:
   fast_finish: true
 branches:
