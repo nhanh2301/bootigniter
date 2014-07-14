@@ -37,7 +37,7 @@ function redirect( $uri = '', $method = 'location', $http_response_code = 302 )
 {
     if ( IS_CLI )
     {
-        if ( !defined('PROJECT_DIR') )
+        if ( !defined('PHPUNIT_TEST') )
         {
             echo "Redirecting: $uri\n";
             exit;

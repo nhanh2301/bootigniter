@@ -17,6 +17,9 @@
 // BootIgniter Base Path
 $config['bi_base_path'] = dirname(dirname(__FILE__)).'/';
 
+// Composer Vendor Path
+$config['bi_vendor_path'] = FCPATH.'vendor/';
+
 
 /* End of file bootigniter.php */
 /* Location: ./bootigniter/config/bootigniter.php */

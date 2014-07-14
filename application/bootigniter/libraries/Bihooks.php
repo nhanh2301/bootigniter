@@ -46,7 +46,7 @@ class Bihooks
     {
         $output = $this->_ci->output->get_output();
 
-        if (!defined('PROJECT_DIR'))
+        if ( !defined('PHPUNIT_TEST') )
         {
             return;
         }
