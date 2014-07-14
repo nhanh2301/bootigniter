@@ -15,8 +15,12 @@ module.exports = function(grunt) {
 
     phplint: {
       backend: [
-        'application/core/*.php',
+        'application/bootigniter/helpers/**/*.php',
+        'application/bootigniter/libraries/**/*.php',
         'application/controllers/**/*.php',
+        'application/core/*.php',
+        'application/hooks/**/*.php',
+        'application/helpers/**/*.php',
         'application/libraries/**/*.php',
         'application/models/**/*.php',
         'application/views/**/*.php'
@@ -48,7 +52,7 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt, {scope: 'devDependencies'});
   require('time-grunt')(grunt);
 
-  grunt.registerTask('phptest', ['phpunit', 'phplint']);
+  grunt.registerTask('phptest', ['phplint', 'phpunit']);
 
   grunt.registerTask('default', ['php']);
 }
