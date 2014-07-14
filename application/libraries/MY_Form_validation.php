@@ -11,7 +11,7 @@
 // -----------------------------------------------------------------------------
 
 /**
- * BAKA Form Validation Class
+ * MY Form Validation Class
  *
  * Pre-processes global input data for security
  * Extending native CI Form Validation
@@ -25,7 +25,6 @@ class MY_Form_validation extends CI_Form_validation
      * Default Class Constructor
      *
      * @param   array
-     *
      * @return  void
      */
     function __construct( $rules = array() )
@@ -41,13 +40,12 @@ class MY_Form_validation extends CI_Form_validation
      * Validating Google reCaptcha input from user form
      *
      * @param   string
-     *
      * @return  bool
      */
     function valid_recaptcha( $code )
     {
         $resp = recaptcha_check_answer(
-                    $this->CI->bakaigniter->get_setting('auth_recaptcha_public_key'),
+                    $this->CI->bootigniter->get_setting('auth_recaptcha_public_key'),
                     $this->ip_address(),
                     $this->post('recaptcha_challenge_field'),
                     $code );
@@ -67,7 +65,6 @@ class MY_Form_validation extends CI_Form_validation
      * Validating Cool Captcha input from user form
      *
      * @param   string
-     *
      * @return  bool
      */
     function valid_captcha( $code )
@@ -87,12 +84,11 @@ class MY_Form_validation extends CI_Form_validation
      * Validating are Username blacklisted or not
      *
      * @param   string
-     *
      * @return  bool
      */
     function is_username_blacklist( $username )
     {
-        if ( !$this->CI->authr->users->is_username_allowed( $username ) )
+        if ( !$this->CI->biauth->users->is_username_allowed( $username ) )
         {
             $this->set_message('is_username_blacklist', _x('auth_username_blacklisted'));
             return FALSE;
@@ -107,12 +103,11 @@ class MY_Form_validation extends CI_Form_validation
      * Validating is Username available for new user
      *
      * @param   string
-     *
      * @return  bool
      */
     function is_username_available( $username )
     {
-        if ( $this->CI->authr->users->is_username_exists( $username ) )
+        if ( $this->CI->biauth->users->is_username_exists( $username ) )
         {
             $this->set_message( 'is_username_available', _x('auth_username_in_use') );
             return FALSE;
@@ -127,12 +122,11 @@ class MY_Form_validation extends CI_Form_validation
      * Validating is Email address available for new user
      *
      * @param   string
-     *
      * @return  bool
      */
     function is_email_available( $email )
     {
-        if ( $this->CI->authr->users->is_email_exists( $email ) )
+        if ( $this->CI->biauth->users->is_email_exists( $email ) )
         {
             $this->set_message( 'is_email_available', _x('auth_email_in_use') );
             return FALSE;
@@ -147,12 +141,11 @@ class MY_Form_validation extends CI_Form_validation
      * Validating is Username already exists
      *
      * @param   string
-     *
      * @return  bool
      */
     function is_username_exists( $username )
     {
-        if ( !$this->CI->authr->users->is_username_exists( $username ) )
+        if ( !$this->CI->biauth->users->is_username_exists( $username ) )
         {
             $this->set_message( 'is_username_available', _x('auth_username_not_exists') );
             return FALSE;
@@ -167,12 +160,11 @@ class MY_Form_validation extends CI_Form_validation
      * Validating is Email address already exists
      *
      * @param   string
-     *
      * @return  bool
      */
     function is_email_exists( $email )
     {
-        if ( !$this->CI->authr->users->is_email_exists( $email ) )
+        if ( !$this->CI->biauth->users->is_email_exists( $email ) )
         {
             $this->set_message( 'is_email_available', _x('auth_email_not_exists') );
             return FALSE;
@@ -183,10 +175,16 @@ class MY_Form_validation extends CI_Form_validation
 
     // -------------------------------------------------------------------------
 
+    /**
+     * Validating is username lenght acceptable
+     *
+     * @param   string  $string  Username
+     * @return  bool
+     */
     function valid_username_length( $string )
     {
-        $min_length = $this->CI->bakaigniter->get_setting('auth_username_length_min');
-        $max_length = $this->CI->bakaigniter->get_setting('auth_username_length_max');
+        $min_length = $this->CI->bootigniter->get_setting('auth_username_length_min');
+        $max_length = $this->CI->bootigniter->get_setting('auth_username_length_max');
 
         if ( !$this->min_length( $string, $min_length ) )
         {
@@ -207,10 +205,16 @@ class MY_Form_validation extends CI_Form_validation
 
     // -------------------------------------------------------------------------
 
+    /**
+     * Validating is Password lenght acceptable
+     *
+     * @param   string  $string  Password
+     * @return  bool
+     */
     function valid_password_length( $string )
     {
-        $min_length = $this->CI->bakaigniter->get_setting('auth_password_length_min');
-        $max_length = $this->CI->bakaigniter->get_setting('auth_password_length_max');
+        $min_length = $this->CI->bootigniter->get_setting('auth_password_length_min');
+        $max_length = $this->CI->bootigniter->get_setting('auth_password_length_max');
 
         if ( !$this->min_length( $string, $min_length ) )
         {
@@ -230,5 +234,5 @@ class MY_Form_validation extends CI_Form_validation
     }
 }
 
-/* End of file BAKA_Form_validation.php */
-/* Location: ./application/third_party/bakaigniter/libraries/BAKA_Form_validation.php */
+/* End of file MY_Form_validation.php */
+/* Location: ./application/libraries/MY_Form_validation.php */

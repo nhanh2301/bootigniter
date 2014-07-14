@@ -173,30 +173,30 @@ class Bimedia
                 . "            sizeLimit: fu.data('size-limit')\n"
                 . "        },\n"
                 . "        retry: {\n"
-                . "            autoRetryNote: '"._x('median_text_auto_retry_note')."',\n"
+                . "            autoRetryNote: '"._x('bimedia_text_auto_retry_note')."',\n"
                 . "            enableAuto: true,\n"
                 . "            showButton: true,\n"
                 . "            maxAutoAttempts: 5\n"
                 . "        },\n"
                 . "        text: {\n"
-                . "            failUpload: '"._x('median_text_fail_upload')."',\n"
-                . "            formatProgress: '"._x('median_text_format_progress')."',\n"
-                . "            paused: '"._x('median_text_paused')."',\n"
-                . "            waitingForResponse: '"._x('median_text_waiting_response')."',\n"
+                . "            failUpload: '"._x('bimedia_text_fail_upload')."',\n"
+                . "            formatProgress: '"._x('bimedia_text_format_progress')."',\n"
+                . "            paused: '"._x('bimedia_text_paused')."',\n"
+                . "            waitingForResponse: '"._x('bimedia_text_waiting_response')."',\n"
                 . "        },\n"
                 . "        messages: {\n"
-                . "            emptyError: '"._x('median_error_empty')."',\n"
-                . "            maxHeightImageError: '"._x('median_error_max_height_image')."',\n"
-                . "            maxWidthImageError: '"._x('median_error_max_width_image')."',\n"
-                . "            minHeightImageError: '"._x('median_error_min_height_image')."',\n"
-                . "            minWidthImageError: '"._x('median_error_min_width_image')."',\n"
-                . "            minSizeError: '"._x('median_error_min_size')."',\n"
-                . "            noFilesError: '"._x('median_error_no_files')."',\n"
-                . "            onLeave: '"._x('median_error_on_leave')."',\n"
-                . "            retryFailTooManyItemsError: '"._x('median_error_retry_fail_too_many_items')."',\n"
-                . "            sizeError: '"._x('median_error_size')."',\n"
-                . "            tooManyItemsError: '"._x('median_error_too_many_items')."',\n"
-                . "            typeError: '"._x('median_error_type')."'\n"
+                . "            emptyError: '"._x('bimedia_error_empty')."',\n"
+                . "            maxHeightImageError: '"._x('bimedia_error_max_height_image')."',\n"
+                . "            maxWidthImageError: '"._x('bimedia_error_max_width_image')."',\n"
+                . "            minHeightImageError: '"._x('bimedia_error_min_height_image')."',\n"
+                . "            minWidthImageError: '"._x('bimedia_error_min_width_image')."',\n"
+                . "            minSizeError: '"._x('bimedia_error_min_size')."',\n"
+                . "            noFilesError: '"._x('bimedia_error_no_files')."',\n"
+                . "            onLeave: '"._x('bimedia_error_on_leave')."',\n"
+                . "            retryFailTooManyItemsError: '"._x('bimedia_error_retry_fail_too_many_items')."',\n"
+                . "            sizeError: '"._x('bimedia_error_size')."',\n"
+                . "            tooManyItemsError: '"._x('bimedia_error_too_many_items')."',\n"
+                . "            typeError: '"._x('bimedia_error_type')."'\n"
                 . "        }\n"
                 . "    }).on('error', function (event, id, name, reason) {\n"
                 . "        var selector = $('.qq-upload-status-text-selector');\n"
@@ -211,11 +211,11 @@ class Bimedia
                 . "            uploadedObj = responseJSON.data,\n"
                 . "            uploadedFile = '<input type=\"hidden\" name=\"'+fuField+'[]\" value=\"'+responseJSON.data.file_name+'\" />',\n"
                 . "            fileDetail = '<dl class=\"upload-desc\">'\n"
-                . "                       + '<dt>"._x('median_client_name')."</dt><dd>'+uploadedObj.client_name+'</dd>'\n"
-                . "                       + '<dt>"._x('median_file_name')."</dt><dd>'+uploadedObj.file_name+'</dd>'\n"
-                . "                       + '<dt>"._x('median_file_size')."</dt><dd>'+uploadedObj.file_size+'</dd>'\n"
-                . "                       + '<dt>"._x('median_file_type')."</dt><dd>'+uploadedObj.file_type+'</dd>'\n"
-                . "                       + '<dt>"._x('median_file_path')."</dt><dd>".$upload_path."</dd>'\n"
+                . "                       + '<dt>"._x('bimedia_client_name')."</dt><dd>'+uploadedObj.client_name+'</dd>'\n"
+                . "                       + '<dt>"._x('bimedia_file_name')."</dt><dd>'+uploadedObj.file_name+'</dd>'\n"
+                . "                       + '<dt>"._x('bimedia_file_size')."</dt><dd>'+uploadedObj.file_size+'</dd>'\n"
+                . "                       + '<dt>"._x('bimedia_file_type')."</dt><dd>'+uploadedObj.file_type+'</dd>'\n"
+                . "                       + '<dt>"._x('bimedia_file_path')."</dt><dd>".$upload_path."</dd>'\n"
                 . "                       + '</dl>';\n"
                 . "        if(uploadedObj.image_thumbnail !== undefined) {\n"
                 . "            uploadId.find('.panel-body').append('<img src=\"".base_url($upload_path)."/'+uploadedObj.image_thumbnail+'\" alt=\"'+uploadedObj.client_name+'\" class=\"upload-file upload-preview img img-responsive\">')\n"
@@ -236,14 +236,14 @@ class Bimedia
         $out = '<script type="text/template" id="qq-template">'
              . '<div class="col-md-12"><div class="qq-upload-selector">'
              . '    <div class="qq-upload-drop-area-selector" qq-hide-dropzone>'
-             . '        <span>'._x('median_drop_area_selector_text').'</span>'
+             . '        <span>'._x('bimedia_drop_area_selector_text').'</span>'
              . '    </div>'
              . '    <div class="qq-upload-button-selector btn btn-default">'
-             . '        <span>'._x('median_upload_button_selector_text').'</span>'
+             . '        <span>'._x('bimedia_upload_button_selector_text').'</span>'
              . '    </div>'
              . '    <div class="qq-drop-processing-selector qq-hide">'
              . '        <span class="qq-drop-processing-spinner-selector"></span>'
-             . '        <span>'._x('median_drop_processing_selector_text').'</span>'
+             . '        <span>'._x('bimedia_drop_processing_selector_text').'</span>'
              . '    </div>'
              . '    <ul class="qq-upload-list-selector row panel-group" id="accordion">'
              . '        <li class="panel panel-default col-md-12">'
@@ -301,7 +301,7 @@ class Bimedia
             $_file_types .= ($i == ($_c_types-2) ? ' dan ' : '; ');
         }
 
-        return _x('median_upload_policy', array($this->file_limit, $_file_types));
+        return _x('bimedia_upload_policy', array($this->file_limit, $_file_types));
     }
 
     /**

@@ -76,7 +76,7 @@ function is_valid_url( $url )
 {
     $url_pattern = "/^(http(s?):\/\/|(\/\/?))/";
 
-    return preg_match($url_pattern, $url);
+    return (bool) preg_match($url_pattern, $url);
 }
 
 // -----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ function is_valid_email( $email )
 {
     $email_pattern = "/([a-zA-Z0-9_\.\-\+]+)@([a-zA-Z0-9\-]+)\.([a-zA-Z0-9\-\.]*)/i";
 
-    return preg_match($email_pattern, $email);
+    return (bool) preg_match($email_pattern, $email);
 }
 
 // -----------------------------------------------------------------------------
