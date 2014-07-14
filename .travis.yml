@@ -11,6 +11,13 @@ install:
   - npm install
 script:
   - grunt build
+deploy:
+  provider: heroku
+  app: bootigniter
+  on:
+    php: 5.3
+  api_key:
+    secure: SiJmgfXdqi8AyEbSvg/CEGyWBRIcpfRI04O+3eu5uP3S/gxAF/H/3CQJBVu1XHb7NiDnnBzabhaWz2aUE02Z/0PK6ZrkRfd5xUD7mISkRwiutLEKmuywwI2B/3QuRSfmMNu54SImsQNIxtvgHGYs5nr2TIDCzdfr/oTZrhtpH7M=
 matrix:
   fast_finish: true
 branches:
