@@ -1,6 +1,6 @@
 /*!
- * BootIgniter v1.0.1 (https://github.com/feryardiant/bootigniter)
- * Copyright -2014 [object Object]
+ * BootIgniter v1.0.2 (https://github.com/feryardiant/bootigniter)
+ * Copyright 2014 Fery Wardiyanto
  * Licensed under OSL (https://github.com/feryardiant/bootigniter/blob/master/license.md)
  */
 $(document).ready(function () {

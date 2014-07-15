@@ -1,13 +1,16 @@
 module.exports = function(grunt) {
   'use strict';
 
+  // Force use of Unix newlines
+  grunt.util.linefeed = '\n';
+
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
 
     banner: '/*!\n' +
             ' * BootIgniter v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-            ' * Copyright -<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' * Copyright 2014 <%= pkg.author %>\n' +
             ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n' +
             ' */\n',
 

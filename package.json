@@ -13,12 +13,7 @@
     "type": "git",
     "url": "https://github.com/feryardiant/bootigniter"
   },
-  "author": [
-    {
-      "name": "Fery Wardiyanto",
-      "email": "ferywardiyanto@gmail.com"
-    }
-  ],
+  "author": "Fery Wardiyanto",
   "keywords": [
     "codeigniter",
     "starter",
