@@ -18,7 +18,7 @@
 $config['application_name']            = 'BootIgniter';
 
 // BootIgniter Application Version
-$config['application_version']         = '1.0.2';
+$config['application_version']         = Bootigniter::VERSION;
 
 // BootIgniter Application Author
 $config['application_author']          = 'Fery Wardiyanto';

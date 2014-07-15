@@ -292,8 +292,8 @@ class Bimedia
      */
     public function upload_policy()
     {
-        $_types         = explode('|', $this->allowed_types);
-        $_c_types       = count($_types);
+        $_types         = explode( '|', $this->allowed_types );
+        $_c_types       = count( $_types );
         $_file_types    = '';
 
         for ($i = 0; $i < $_c_types; $i++)
@@ -302,7 +302,7 @@ class Bimedia
             $_file_types .= ($i == ($_c_types-2) ? ' dan ' : '; ');
         }
 
-        return _x('bimedia_upload_policy', array($this->file_limit, $_file_types));
+        return _x( 'bimedia_upload_policy', array( $this->file_limit, $_file_types ) );
     }
 
     /**
@@ -313,34 +313,34 @@ class Bimedia
      */
     public function do_upload()
     {
-        if (isset($_FILES[$this->field_name]))
+        if ( isset( $_FILES[$this->field_name] ) )
         {
-            $this->_ci->load->library('upload', array(
+            $this->_ci->load->library( 'upload', array(
                 'upload_path'   => $this->destination,
                 'allowed_types' => $this->allowed_types,
                 'encrypt_name'  => $this->encript_name,
                 'max_size'      => $this->upload_max_size,
                 ));
 
-            if ($this->_ci->upload->do_upload($this->field_name))
+            if ( $this->_ci->upload->do_upload( $this->field_name ) )
             {
                 $uploaded_data = $this->_ci->upload->data();
-                log_message('debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" uploaded successfuly.');
+                log_message( 'debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" uploaded successfuly.' );
 
-                if ($this->is_image($uploaded_data['file_type']))
+                if ( $this->is_image( $uploaded_data['file_type'] ) )
                 {
                     $uploaded_thumb = 'thumbs'.DS.$uploaded_data['file_name'];
-                    $this->_ci->load->library('image_lib', array(
+                    $this->_ci->load->library( 'image_lib', array(
                         'source_image'  => $uploaded_data['full_path'],
                         'new_image'     => $uploaded_data['file_path'].$uploaded_thumb,
                         'width'         => $this->_ci->config->item('bimedia_thumb_width'),
                         'height'        => $this->_ci->config->item('bimedia_thumb_height'),
                         ));
 
-                    if ($this->_ci->image_lib->resize())
+                    if ( $this->_ci->image_lib->resize() )
                     {
                         $uploaded_data['image_thumbnail'] = $uploaded_thumb;
-                        log_message('debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" has been resized.');
+                        log_message( 'debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" has been resized.' );
                     }
                 }
 
@@ -351,16 +351,16 @@ class Bimedia
                 // Grab the error(s)
                 $error_message = $this->_ci->upload->display_errors('', '');
                 // Log it
-                log_message('debug', '#BootIgniter: Bimedia->do_upload failed due to this error(s): '.$error_message.'.');
+                log_message( 'debug', '#BootIgniter: Bimedia->do_upload failed due to this error(s): '.$error_message.'.' );
                 // Set error message
-                set_message('error', $error_message);
+                set_message( 'error', $error_message );
                 // Return it
                 return FALSE;
             }
         }
         else
         {
-            set_message('error', $_FILES[$this->field_name]);
+            set_message( 'error', $_FILES[$this->field_name] );
             return FALSE;
         }
     }
@@ -372,7 +372,7 @@ class Bimedia
      *
      * @return  bool
      */
-    protected function is_image($file_type)
+    protected function is_image( $file_type )
     {
         // IE will sometimes return odd mime-types during upload, so here we just standardize all
         // jpegs or pngs to the same file type.
@@ -380,12 +380,12 @@ class Bimedia
         $png_mimes  = array('image/x-png');
         $jpeg_mimes = array('image/jpg', 'image/jpe', 'image/jpeg', 'image/pjpeg');
 
-        if (in_array($file_type, $png_mimes))
+        if ( in_array( $file_type, $png_mimes ) )
         {
             $file_type = 'image/png';
         }
 
-        if (in_array($file_type, $jpeg_mimes))
+        if ( in_array( $file_type, $jpeg_mimes ) )
         {
             $file_type = 'image/jpeg';
         }
@@ -396,7 +396,7 @@ class Bimedia
             'image/png',
             );
 
-        return (in_array($file_type, $img_mimes, TRUE)) ? TRUE : FALSE;
+        return ( in_array( $file_type, $img_mimes, TRUE ) ) ? TRUE : FALSE;
     }
 }
 

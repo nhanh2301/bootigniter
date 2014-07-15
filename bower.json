@@ -1,6 +1,6 @@
 {
   "name": "bootigniter-deps",
-  "version": "1.0.2",
+  "version": "1.0.2-rc1",
   "description": "A Dependency package for BootIgniter - CodeIgniter-based project boilerplate with some additional features that make development easier",
   "private": true,
   "license": "OSL",

@@ -1,6 +1,6 @@
 {
   "name": "feryardiant/bootigniter",
-  "version": "1.0.2",
+  "version": "1.0.2-rc1",
   "description": "A CodeIgniter-based project boilerplate with some additional features that make development easier",
   "license": "OSL",
   "repository": {
