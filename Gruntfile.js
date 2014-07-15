@@ -17,16 +17,10 @@ module.exports = function(grunt) {
     },
 
     php: {
-      watch: {
+      server: {
         options: {
           port: 8086,
           open: true
-        }
-      },
-      server: {
-        options: {
-          keepalive: true,
-          port: 8086
         }
       }
     },
@@ -44,7 +38,7 @@ module.exports = function(grunt) {
         'application/views/**/*.php'
       ],
       test: [
-        '<%= phpunit.backend %>/**/*.php'
+        '<%= phpunit.backend.dir %>/**/*.php'
       ]
     },
 
@@ -206,5 +200,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build',   ['phptest', 'cssdist', 'csstest', 'jsdist', 'jstest']);
 
-  grunt.registerTask('default', ['php:watch', 'watch']);
+  grunt.registerTask('default', ['php:server', 'watch']);
 }
