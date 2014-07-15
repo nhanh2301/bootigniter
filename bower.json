@@ -41,8 +41,10 @@
     "bootstrap-switch": "~3.0.2",
     "bootstrap-select": "~1.5.4",
     "jquery-autosize": "~1.18.9",
-    "fontawesome": "~4.1.0",
     "select2": "~3.5.0",
-    "morrisjs": "~0.5.1"
+    "morrisjs": "~0.5.1",
+    "fine-uploader": "~5.0.3",
+    "summernote": "~0.5.1",
+    "font-awesome": "~4.1.0"
   }
 }
