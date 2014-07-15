@@ -20,6 +20,8 @@ deploy:
     secure: SiJmgfXdqi8AyEbSvg/CEGyWBRIcpfRI04O+3eu5uP3S/gxAF/H/3CQJBVu1XHb7NiDnnBzabhaWz2aUE02Z/0PK6ZrkRfd5xUD7mISkRwiutLEKmuywwI2B/3QuRSfmMNu54SImsQNIxtvgHGYs5nr2TIDCzdfr/oTZrhtpH7M=
 matrix:
   fast_finish: true
+  allow_failures:
+    - php: 5.3
 branches:
   only:
   - master
