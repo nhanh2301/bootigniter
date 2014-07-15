@@ -42,5 +42,5 @@ $lang['bimedia_file_type']                         = 'File Type:';
 $lang['bimedia_file_path']                         = 'Upload Destination:';
 
 
-/* End of file Bimedia_lang.php */
-/* Location: ./bootigniter/language/indonesian/Bimedia_lang.php */
+/* End of file bimedia_lang.php */
+/* Location: ./bootigniter/language/indonesian/bimedia_lang.php */

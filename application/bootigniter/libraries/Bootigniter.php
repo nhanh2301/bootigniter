@@ -22,7 +22,7 @@ class Bootigniter
      *
      * @var  resource
      */
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     /**
      * Codeigniter instance object

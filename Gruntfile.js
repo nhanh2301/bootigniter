@@ -30,8 +30,7 @@ module.exports = function(grunt) {
 
     phplint: {
       backend: [
-        'application/bootigniter/helpers/**/*.php',
-        'application/bootigniter/libraries/**/*.php',
+        'application/bootigniter/**/*.php',
         'application/controllers/**/*.php',
         'application/core/*.php',
         'application/hooks/**/*.php',

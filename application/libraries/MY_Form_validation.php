@@ -52,7 +52,7 @@ class MY_Form_validation extends CI_Form_validation
 
         if ( !$resp->is_valid )
         {
-            $this->set_message('valid_recaptcha', _x('auth_incorrect_captcha'));
+            $this->set_message('valid_recaptcha', _x('biauth_incorrect_captcha'));
             return FALSE;
         }
 
@@ -71,7 +71,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( $this->CI->session->userdata('captcha') != $code )
         {
-            $this->set_message('valid_captcha', _x('auth_incorrect_captcha'));
+            $this->set_message('valid_captcha', _x('biauth_incorrect_captcha'));
             return FALSE;
         }
 
@@ -90,7 +90,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( !$this->CI->biauth->users->is_username_allowed( $username ) )
         {
-            $this->set_message('is_username_blacklist', _x('auth_username_blacklisted'));
+            $this->set_message('is_username_blacklist', _x('biauth_username_blacklisted'));
             return FALSE;
         }
 
@@ -109,7 +109,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( $this->CI->biauth->users->is_username_exists( $username ) )
         {
-            $this->set_message( 'is_username_available', _x('auth_username_in_use') );
+            $this->set_message( 'is_username_available', _x('biauth_username_in_use') );
             return FALSE;
         }
 
@@ -128,7 +128,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( $this->CI->biauth->users->is_email_exists( $email ) )
         {
-            $this->set_message( 'is_email_available', _x('auth_email_in_use') );
+            $this->set_message( 'is_email_available', _x('biauth_email_in_use') );
             return FALSE;
         }
 
@@ -147,7 +147,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( !$this->CI->biauth->users->is_username_exists( $username ) )
         {
-            $this->set_message( 'is_username_available', _x('auth_username_not_exists') );
+            $this->set_message( 'is_username_available', _x('biauth_username_not_exists') );
             return FALSE;
         }
 
@@ -166,7 +166,7 @@ class MY_Form_validation extends CI_Form_validation
     {
         if ( !$this->CI->biauth->users->is_email_exists( $email ) )
         {
-            $this->set_message( 'is_email_available', _x('auth_email_not_exists') );
+            $this->set_message( 'is_email_available', _x('biauth_email_not_exists') );
             return FALSE;
         }
 
@@ -188,15 +188,13 @@ class MY_Form_validation extends CI_Form_validation
 
         if ( !$this->min_length( $string, $min_length ) )
         {
-            $this->set_message( 'valid_username_length', _x('auth_username_length_min', $min_length) );
-
+            $this->set_message( 'valid_username_length', _x('biauth_username_length_min', $min_length) );
             return FALSE;
         }
 
         if ( !$this->max_length( $string, $max_length ) )
         {
-            $this->set_message( 'valid_username_length', _x('auth_username_length_max', $max_length) );
-
+            $this->set_message( 'valid_username_length', _x('biauth_username_length_max', $max_length) );
             return FALSE;
         }
 
@@ -218,15 +216,13 @@ class MY_Form_validation extends CI_Form_validation
 
         if ( !$this->min_length( $string, $min_length ) )
         {
-            $this->set_message( 'valid_password_length', _x('auth_password_length_min', $min_length) );
-
+            $this->set_message( 'valid_password_length', _x('biauth_password_length_min', $min_length) );
             return FALSE;
         }
 
         if ( !$this->max_length( $string, $max_length ) )
         {
-            $this->set_message( 'valid_password_length', _x('auth_password_length_max', $max_length) );
-
+            $this->set_message( 'valid_password_length', _x('biauth_password_length_max', $max_length) );
             return FALSE;
         }
 

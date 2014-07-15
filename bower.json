@@ -1,10 +1,35 @@
 {
-  "name": "bootigniter",
-  "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
+  "name": "bootigniter-deps",
+  "version": "1.0.2",
+  "description": "A Dependency package for BootIgniter - CodeIgniter-based project boilerplate with some additional features that make development easier",
   "private": true,
   "license": "OSL",
+  "homepage": "https://github.com/feryardiant/bootigniter",
   "authors": [
     "Fery Wardiyanto <ferywardiyanto@gmail.com>"
+  ],
+  "keywords": [
+    "codeigniter",
+    "starter",
+    "dependencies",
+    "front-end",
+    "package"
+  ],
+  "main": [
+    "asset/less/*.less",
+    "asset/css/*.css",
+    "asset/js/*.js",
+    "asset/less/*.less"
+  ],
+  "ignore": [
+    ".*",
+    "_*",
+    "phpunit.xml",
+    "composer.json",
+    "composer.lock",
+    "*.php",
+    "application",
+    "system"
   ],
   "dependencies": {
     "bootstrap": "~3.2.0",

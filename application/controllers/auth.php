@@ -83,7 +83,7 @@ class Auth extends MY_Controller
                 'autocomplete' => 'off',
                 ),
             'buttons'  => $buttons,
-            'is_hform' => FALSE ));
+            ));
 
         if ( $input = $form->validate_submition() )
         {
@@ -193,7 +193,7 @@ class Auth extends MY_Controller
         $this->data['panel_body'] = $form->generate();
         $this->data['page_body'] = $this->bootigniter->get_setting('welcome_register');
 
-        $this->load->theme('pages/auth', $this->data, 'auth');
+        $this->load->theme('auth', $this->data);
     }
 
     public function resend()
@@ -258,11 +258,10 @@ class Auth extends MY_Controller
             }
         }
 
+        $this->data['panel_body'] = $form->generate();
         $this->data['page_body'] = $this->bootigniter->get_setting('welcome_resend');
 
-        $this->data['panel_body'] = $form->generate();
-
-        $this->load->theme('pages/auth', $this->data, 'auth');
+        $this->load->theme('auth', $this->data);
     }
 
     public function forgot()
@@ -304,27 +303,31 @@ class Auth extends MY_Controller
 
         if ( $form_data = $form->validate_submition() )
         {
-
             if ( $data = $this->biauth->forgot_password( $form_data['forgot_login']) )
             {
                 // Send email with password activation link
-                $this->bootigniter->send_email( $data['email'], 'lang:forgot_password', $data );
-
-                $this->_notice('password-sent');
+                if ( $this->bootigniter->send_email( $data['email'], 'lang:forgot_password', $data ) )
+                {
+                    $this->session->set_flashdata('success', _x('notice_password_sent_title'));
+                }
+                else
+                {
+                    $this->session->set_flashdata('error', 'Oops! Something goes wrong,');
+                }
             }
-            else
+
+            foreach ( get_message() as $type => $item )
             {
-                $this->session->set_flashdata('error', get_message('error'));
-
-                redirect( current_url() );
+                $this->session->set_flashdata( $type, $item );
             }
+
+            redirect( current_url() );
         }
 
+        $this->data['panel_body'] = $form->generate();
         $this->data['page_body'] = $this->bootigniter->get_setting('welcome_forgot');
 
-        $this->data['panel_body'] = $form->generate();
-
-        $this->load->theme('pages/auth', $this->data, 'auth');
+        $this->load->theme('auth', $this->data);
     }
 
     public function activate( $user_id = NULL, $email_key = NULL )
@@ -408,17 +411,15 @@ class Auth extends MY_Controller
             }
         }
 
+        $this->data['panel_body'] = $form->generate();
         $this->data['page_body'] = '';
 
-        $this->data['panel_body'] = $form->generate();
-
-        $this->load->theme('pages/auth', $this->data, 'auth');
+        $this->load->theme('auth', $this->data);
     }
 
     public function logout()
     {
         $this->biauth->logout();
-
         redirect('login');
     }
 }

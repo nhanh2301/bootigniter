@@ -93,5 +93,5 @@ $lang['notice_no_data_accessible_title']      = 'Oops! Tidak ada data untuk anda
 $lang['notice_no_data_accessible_message']    = 'Maaf, sepertinya administrator tidak memperbolehkan anda melihat satu data-pun dihalaman ini. Jika ini merupakan suatu kesalahan, silahkan hubungi administrator terkait.';
 
 
-/* End of file BootIgniter_lang.php */
-/* Location: ./application/language/indonesian/BootIgniter_lang.php */
+/* End of file bootigniter_lang.php */
+/* Location: ./application/language/indonesian/bootigniter_lang.php */

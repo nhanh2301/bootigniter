@@ -1,7 +1,7 @@
 <?php if ( !defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * @package     BootIgniter Pack
- * @subpackage  Bitheme Translation
+ * @subpackage  Biform Translation
  * @category    Languages
  * @author      Fery Wardiyanto
  * @copyright   Copyright (c) Fery Wardiyanto. <ferywardiyanto@gmail.com>
@@ -11,12 +11,8 @@
 
 // -----------------------------------------------------------------------------
 
-$lang['bitheme_submit_btn']  = 'Simpan';
-$lang['bitheme_reset_btn']   = 'Batal';
-$lang['bitheme_print_btn']   = 'Cetak';
-$lang['bitheme_backup_btn']  = 'Backup sekarang';
-$lang['bitheme_restore_btn'] = 'Restore sekarang';
+$lang['biform_gdext_notfound']  = 'Maaf! tampaknya server anda tidak dilengkapi dengan Extensi GD, silahkan hubungi administrator.';
 
 
-/* End of file bitheme_lang.php */
-/* Location: ./bootigniter/language/indonesian/bitheme_lang.php */
+/* End of file biform_lang.php */
+/* Location: ./bootigniter/language/indonesian/biform_lang.php */

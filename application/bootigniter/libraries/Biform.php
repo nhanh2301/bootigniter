@@ -48,7 +48,7 @@ class Biform
      *
      * @var  bool
      */
-    protected $is_hform = FALSE;
+    protected $is_hform = TRUE;
 
     /**
      * Is it a Multipart Form?
@@ -167,6 +167,10 @@ class Biform
 
         // Load dependencies
         $this->_ci->load->library('form_validation');
+        $this->_ci->lang->load('biform');
+        $this->_ci->config->load('biform');
+
+        $this->_template = array_merge( $this->_template, $this->_ci->config->item('biform_template') );
 
         // Give some default values
         $this->_attrs['action'] = current_url();
@@ -176,6 +180,8 @@ class Biform
         {
             $this->initialize($attrs);
         }
+
+        // var_dump($this->_ci->session->userdata('captcha'));
 
         log_message('debug', "#BootIgniter: Former Class Initialized");
     }
@@ -187,7 +193,6 @@ class Biform
      *
      * @since   version 1.0.0
      * @param   array   $attrs  Form Attributes config
-     *
      * @return  mixed
      */
     public function initialize(array $attrs = array())
@@ -207,12 +212,15 @@ class Biform
         }
 
         // Is 'is_hform' already declarated? if not make it true
-        $this->is_hform = isset($attrs['is_hform']) ? $attrs['is_hform'] : TRUE;
-
-        // make it horizontal form by default
-        if ($this->is_hform == TRUE)
+        if ( isset($attrs['is_hform']) )
         {
-            $this->_attrs['class'] .= ' form-horizontal';
+            $this->is_hform = $attrs['is_hform'];
+
+            // make it horizontal form by default
+            if ($this->is_hform == TRUE)
+            {
+                $this->_attrs['class'] .= ' form-horizontal';
+            }
         }
 
         // set-up HTML5 role attribute
@@ -222,6 +230,7 @@ class Biform
         if (isset($attrs['fields']) and is_array($attrs['fields']) and !empty($attrs['fields']))
         {
             $this->set_fields($attrs['fields']);
+            set_script('former-script', $this->_scripts($attrs['fields']), 'baka-pack');
         }
 
         // if buttons is already declarated in the config, just make it happen ;)
@@ -241,8 +250,6 @@ class Biform
         {
             $this->set_template($attrs['template']);
         }
-
-        set_script('former-script', $this->_scripts($attrs['fields']), 'baka-pack');
 
         return $this;
     }
@@ -314,7 +321,6 @@ class Biform
      *
      * @since   version 1.0.0
      * @param   array  $template  Template replacements
-     *
      * @return  obj
      */
     public function set_template(array $template)
@@ -426,7 +432,6 @@ class Biform
      * Let's see what we'll get
      *
      * @since   version 1.0.0
-     *
      * @return  string
      */
     public function generate()
@@ -458,6 +463,8 @@ class Biform
             $_hiddens = $this->_attrs['hiddens'];
             unset($this->_attrs['hiddens']);
         }
+
+        $this->_attrs['class'] = trim($this->_attrs['class']);
 
         // Let's get started
         $html = form_open($_action, $this->_attrs, $_hiddens);
@@ -512,7 +519,6 @@ class Biform
      * @since   version 1.0.0
      * @param   array   $field_attrs  Field Attributes
      * @param   bool    $is_sub       Is it an sub-fields?
-     *
      * @return  string
      */
     protected function _compile(array $field_attrs, $is_sub = FALSE)
@@ -1066,16 +1072,17 @@ class Biform
                     $input_id    = 'captcha-'.$id.'-input';
 
                     $input = img(array(
-                        'src'   => $captcha_url,
-                        'alt'   => 'Cool captcha image',
-                        'id'    => $image_id,
-                        'class' => 'img',
-                        'width' => '200',
-                        'height'=> '70',
-                        'rel'   => 'cool-captcha'));
+                        'src'    => $captcha_url,
+                        'alt'    => 'Cool captcha image',
+                        'id'     => $image_id,
+                        'class'  => 'img',
+                        'width'  => '200',
+                        'height' => '70',
+                        'rel'    => 'cool-captcha'
+                        ));
 
                     $input .= anchor(current_url().'#', 'Ganti teks', array(
-                        'class'   => 'small change-image btn btn-default',
+                        'class' => 'small change-image btn btn-default',
                         ));
 
                     $input .= form_input(array(
@@ -1085,9 +1092,9 @@ class Biform
                         'class' => $input_class ), set_value($name, ''), $attr);
 
                     $script = "$('.change-image').on('click', function (e){\n"
-                            . "     $('#".$image_id."').attr('src', '".$captcha_url."?'+Math.random());\n"
-                            . "     $('#".$input_id."').focus();\n"
-                            . "     e.preventDefault();\n"
+                            . "    $('#".$image_id."').attr('src', '".$captcha_url."?'+Math.random());\n"
+                            . "    $('#".$input_id."').focus();\n"
+                            . "    e.preventDefault();\n"
                             . "});";
 
                     set_script('collcaptha-trigger', $script);
@@ -1095,18 +1102,16 @@ class Biform
                     if (!extension_loaded('gd'))
                     {
                         $field_attrs['class'] = ' has-error';
-                        $input = '<p class="form-control form-control-static">Maaf! tampaknya server anda tidak dilengkapi dengan Extensi GD, silahkan hubungi administrator.</p>';
+                        $input = '<p class="form-control form-control-static">'._x('biform_gdext_notfound').'</p>';
                     }
                     break;
 
                 // Summernote editor
                 case 'editor':
-                    set_script('summernote',     'lib/summernote.min.js', 'bootstrap', '0.5.2');
-                    set_script('summernote-id',  'lib/summernote.id-ID.js', 'summernote', '0.5.2');
-                    set_script('codemirror',     'lib/codemirror.js', 'jquery', '4.1');
+                    set_script('summernote', 'lib/summernote.min.js', 'bootstrap', '0.5.2');
+                    set_script('summernote-id', 'lib/summernote.id-ID.js', 'summernote', '0.5.2');
+                    set_script('codemirror', 'lib/codemirror.js', 'jquery', '4.1');
                     set_script('codemirror.xml', 'lib/codemirror.mode.xml.js', 'codemirror', '4.1');
-                    // set_script('jquery-mousewheel', 'lib/jquery.mousewheel.min.js', 'jquery', '3.1.0');
-                    // set_script('perfectscrollbar', 'lib/perfect-scrollbar.js', 'jquery', '0.4.10');
 
                     if (!isset($height))
                     {
@@ -1189,7 +1194,6 @@ class Biform
      * @since   version  0.1.3
      * @param   array    $attrs  Field Attributes
      * @param   string   $input  Field input html
-     *
      * @return  string
      */
     protected function _form_common($attrs, $input)
@@ -1276,7 +1280,6 @@ class Biform
      * Form action buttons
      *
      * @since   version 1.0.0
-     *
      * @return  string
      */
     protected function _form_actions()
@@ -1360,7 +1363,6 @@ class Biform
      * using default CI Form Validation
      *
      * @since   version 1.0.0
-     *
      * @return  bool
      */
     public function validate_submition()
@@ -1423,7 +1425,6 @@ class Biform
      * I don't thing it's nessesary, but I need it for some reason :P
      *
      * @since   version 1.0.0
-     *
      * @return  mixed
      */
     public function validation_errors()
@@ -1437,7 +1438,6 @@ class Biform
      * Setup field validation rules
      *
      * @since   0.1.0
-     *
      * @return  void
      */
     protected function set_field_rules($name, $label, $type, $validation = '', $callback = '')
@@ -1504,7 +1504,6 @@ class Biform
      * Field description
      *
      * @param   mixed  $desc  Description about what this field is
-     *
      * @return  string
      */
     protected function _form_desc($desc = NULL)
