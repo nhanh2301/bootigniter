@@ -1,7 +1,7 @@
 {
   "name": "feryardiant/bootigniter",
-  "version": "1.0.1",
-  "description": "Yet another modification from EllisLab's Open Source PHP Framework - CodeIgniter",
+  "version": "1.0.2",
+  "description": "A CodeIgniter-based project boilerplate with some additional features that make development easier",
   "license": "OSL",
   "repository": {
     "type": "git",

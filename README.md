@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/feryardiant/bootigniter.svg?branch=master)](https://travis-ci.org/feryardiant/bootigniter)
 
-A [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that gives scalable development framework for all Developers & Designers. It is a Lightweight Open Source package for you to build your own Custom Codeigniter-based application, instead of customize & remove unnecessary features.
+A [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerplate with some additional features that make development easier. It is a Lightweight Open Source package for you to build your own Custom Codeigniter-based application, instead of customize & remove unnecessary features.
 
 ## Disclaimer
 
@@ -24,14 +24,14 @@ A [CodeIgniter](https://github.com/EllisLab/CodeIgniter)-based project boilerpla
 
 ## Installation
 
-#### Create a directory and `cd` into it.
+### Create a directory and `cd` into it.
 
 ```bash
 $ mkdir <foldername>
 $ cd <foldername>
 ```
 
-#### Install using Composer
+### Install using Composer
 
 I assume you're inside of the directory that has been created above.
 
@@ -41,7 +41,7 @@ $ composer create-project feryardiant/bootigniter .
 
 You're on fire now.
 
-#### Download manually
+### Download manually
 
 1. Download and extract this package
 
@@ -63,31 +63,29 @@ You're on fire now.
    $ npm install
    ```
 
+### Configuration
+
+Last but not least, you need to edit database configuration file that locate in `application/config/database.php` as usual [CI database config](http://ellislab.com/codeigniter/user-guide/database/configuration.html). But before then, you need to create the database at first.
+
 Your code has been ignited right now.
 
 ## Uses
 
 ### Preview in the browser
 
-```bash
-$ grunt php
-```
-
-### PHP Lint and Test Unit
+If everythings was done, you can run it by type from your terminal.
 
 ```bash
-$ grunt phptest
+$ grunt
 ```
 
-### Watch all changes
+In order to auto reloading web browser when you finish editing some file, you need to install [LiveReload](http://livereload.com/). If you're using Chrome [this extension](https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei) is worth to try or if you're Firefox user please take a look at this [add-ons](https://addons.mozilla.org/en-US/firefox/addon/livereload/).
+
+### Build and Minify JS & CSS files 
 
 ```bash
-$ grunt watch
+$ grunt build
 ```
-
-### JS & CSS
-
-#### SOON :grin:
 
 ## Changelog
 
