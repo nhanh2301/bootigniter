@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= BI_BASE_URL;
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= BI_BASE_URL;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = BI_INDEXPAGE;
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +69,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= BI_LANGUAGE;
+$config['language']	= 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = BI_ENCRYPTKEY;
+$config['encryption_key'] = '1234567890qwerty';
 
 /*
 |--------------------------------------------------------------------------

@@ -48,12 +48,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = BI_HOSTNAME;
-$db['default']['username'] = BI_USERNAME;
-$db['default']['password'] = BI_PASSWORD;
-$db['default']['database'] = BI_DATABASE;
+$db['default']['hostname'] = '';
+$db['default']['username'] = '';
+$db['default']['password'] = '';
+$db['default']['database'] = '';
 $db['default']['dbdriver'] = 'mysqli';
-$db['default']['dbprefix'] = BI_DBPREFIX;
+$db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;

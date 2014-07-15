@@ -18,14 +18,7 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	if (getenv("CLEARDB_DATABASE_URL"))
-	{
-		define('ENVIRONMENT', 'testing');
-	}
-	else
-	{
-		define('ENVIRONMENT', 'development');
-	}
+	define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -181,11 +174,6 @@ if (defined('ENVIRONMENT'))
 
 	// Name of the "system folder"
 	define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
-
-	if ( file_exists(FCPATH.'config'.EXT) )
-	{
-		require FCPATH.'config'.EXT;
-	}
 
 
 	// The path to the "application" folder
