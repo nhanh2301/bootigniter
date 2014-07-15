@@ -16,7 +16,7 @@
  * @subpackage  Drivers
  * @category    Security
  */
-class Biauth_users_meta extends CI_Driver
+class Biauth_user_meta extends CI_Driver
 {
     /**
      * Driver class constructor
@@ -75,16 +75,15 @@ class Biauth_users_meta extends CI_Driver
         }
 
         $data = array();
-        $i    = 0;
 
         foreach ( $meta_data as $meta_key => $meta_value )
         {
-            $data[$i]['user_id'] = $user_id;
-            $data[$i]['key']     = $meta_key;
-            $data[$i]['name']    = str_replace('_', ' ', ucfirst($meta_key));
-            $data[$i]['value']   = $meta_value;
-
-            $i++;
+            $data[] = array(
+                'user_id' => $user_id,
+                'key'     => $meta_key,
+                'name'    => str_replace('_', ' ', ucfirst($meta_key)),
+                'value'   => $meta_value,
+                );
         }
 
         return $this->db->insert_batch( $this->table['user_meta'], $data );
@@ -109,7 +108,7 @@ class Biauth_users_meta extends CI_Driver
 
             foreach ( $meta_key as $key => $value )
             {
-                $this->edit_user_meta( $user_id, $key, $value );
+                $this->edit( $user_id, $key, $value );
             }
 
             $this->db->trans_complete();

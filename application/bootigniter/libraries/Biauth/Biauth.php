@@ -350,32 +350,42 @@ class Biauth extends CI_Driver_Library
      * @param   bool
      * @return  array
      */
-    public function create_user( $username, $email, $password, $groups = array() )
+    public function create_user( $user_data, $groups = array() )
     {
-        $user_data = array(
-            'username'  => $username,
-            'password'  => $this->do_hash($password),
-            'email'     => $email
-            );
+        $password               = $user_data['password'];
+        $user_data['password']  = $this->do_hash( $user_data['password'] );
+        $email_activation       = (bool) get_setting('auth_email_activation');
 
-        $email_activation = (bool) get_setting('auth_email_activation');
-
-        if ($email_activation)
+        if ( $user_id = $this->users->add( $user_data, !$email_activation ) )
         {
-            $user_data['new_email_key'] = $this->generate_random_key();
-            $user_data['user_id']       = $user_id;
-            $user_data['password']      = $password;
+            if ( $email_activation )
+            {
+                $user_data['new_email_key'] = $this->generate_random_key();
+                $user_data['user_id']       = $user_id;
+                $user_data['password']      = $password;
 
-            emailer_send($email, 'activate', $user_data);
+                $this->bootigniter->send_email( $email, 'lang:activate', $user_data );
+            }
+            else
+            {
+                $this->user_meta->set( $user_id );
+
+                if ( count( $groups ) > 0 )
+                {
+                    $this->user_groups->set( $user_id, $groups );
+                }
+            }
+
+            return $user_id;
         }
 
-        if (!($user_id = $this->add_user($user_data, !$email_activation, $groups)))
+        if ( !( $user_id = $this->users->add( $user_data, !$email_activation, $groups ) ) )
         {
-            set_message('error', 'ERROR! Tidak dapat menambahkan '.$username.' sebagai pengguna baru.');
+            set_message( 'error', 'ERROR! Tidak dapat menambahkan '.$username.' sebagai pengguna baru.' );
             return FALSE;
         }
 
-        set_message('success', $username.' berhasil ditambahkan sebagai pengguna baru.');
+        set_message( 'success', $username.' berhasil ditambahkan sebagai pengguna baru.' );
         return TRUE;
     }
 
@@ -751,6 +761,7 @@ class Biauth extends CI_Driver_Library
                     $this->_ci->session->set_userdata(array(
                         'user_id'   => $user->id,
                         'username'  => $user->username,
+                        'display'   => $user->display,
                         'status'    => (int) $activated,
                         ));
 

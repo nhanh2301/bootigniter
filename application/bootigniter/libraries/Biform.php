@@ -664,7 +664,7 @@ class Biform
         else
         {
             $jqui_load = FALSE;
-            $jqui_path = 'lib/jquery-ui/';
+            $jqui_path = 'bower/jqueryui/ui/minified/';
 
             switch($type)
             {
@@ -687,7 +687,7 @@ class Biform
                 case 'number':
                 case 'spinner':
                     $jqui_load = TRUE;
-                    set_script('jqui-spinner', $jqui_path.'spinner.min.js', 'jqui-core', '1.10.4');
+                    set_script('jqui-spinner', $jqui_path.'jquery.ui.spinner.min.js', 'jqui-core', '1.10.4');
 
                     if (!isset($min)) $min = 0;
                     if (!isset($max)) $max = 10;
@@ -729,7 +729,7 @@ class Biform
                 case 'slider':
                 case 'rangeslider':
                     $jqui_load = TRUE;
-                    set_script('jqui-slider', $jqui_path.'slider.min.js', 'jqui-core', '1.10.4');
+                    set_script('jqui-slider', $jqui_path.'jquery.ui.slider.min.js', 'jqui-core', '1.10.4');
 
                     if (!isset($min))
                     {
@@ -879,8 +879,9 @@ class Biform
                 // Date picker field
                 case 'date':
                 case 'datepicker':
-                    set_script('bt-datepicker', 'lib/bootstrap.datepicker.js', 'bootstrap', '1.1.1');
-                    set_script('bt-datepicker-id', 'lib/bootstrap.datepicker.id.js', 'bt-datepicker', '1.1.1');
+                    $locale = ( ($code = get_lang_code()) != 'en' ? '.'.$code : '' );
+                    set_script('bt-datepicker', 'bower/js/bootstrap.datepicker.js', 'bootstrap', '1.1.1');
+                    set_script('bt-datepicker-id', 'bower/js/locales/bootstrap.datepicker'.$locale.'.js', 'bt-datepicker', '1.1.1');
 
                     $script = "$('.bs-datepicker').datepicker({\n"
                             . "    format: 'dd-mm-yyyy',\n"
@@ -906,7 +907,7 @@ class Biform
                 // Using CI form_textarea() function.
                 // adding jquery-autosize.js to make it more useful
                 case 'textarea':
-                    set_script('jquery-autosize', 'lib/jquery.autosize.min.js', 'jquery', '1.18.0');
+                    set_script('jquery-autosize', 'bower/jquery-autosize/jquery.autosize.min.js', 'jquery', '1.18.0');
                     set_script('autosize-trigger', "$('textarea').autosize();\n", 'jquery-autosize');
 
                     $input = form_textarea(array(
@@ -951,9 +952,11 @@ class Biform
                 case 'multiselect':
                 case 'dropdown':
                 case 'select2':
-                    set_script('select2', 'lib/select2.min.js', 'jquery', '3.4.5');
-                    set_script('select2', 'lib/select2.id.js', 'jquery', '3.4.5');
+                    $locale = ( ($code = get_lang_code()) != 'en' ? '_'.$code : '' );
+                    set_script('select2', 'bower/select2/select2.min.js', 'jquery', '3.4.5');
+                    set_script('select2-locale', 'bower/select2/select2'.$locale.'.js', 'jquery', '3.4.5');
                     set_script('select2-trigger', "$('.form-control-select2').select2();\n", 'select2');
+                    set_style('select2', 'bower/select2/select2.css', 'bootstrap', '3.4.5');
 
                     $attr = 'class="form-control-select2 '.$input_class.'" id="'.$id.'" '.$attr;
 
@@ -973,7 +976,8 @@ class Biform
 
                 // Bootstrap Switch field
                 case 'switch':
-                    set_script('bs-switch', 'lib/bootstrap.switch.min.js', 'bootstrap', '3.0.0');
+                    set_script('bs-switch', 'bower/bootstrap-switch/dist/js/bootstrap-switch.min.js', 'bootstrap', '3.0.2');
+                    set_style('bs-switch', 'bower/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css', 'bootstrap', '3.0.2');
 
                     if (!isset($option))
                     {
@@ -1108,10 +1112,13 @@ class Biform
 
                 // Summernote editor
                 case 'editor':
-                    set_script('summernote', 'lib/summernote.min.js', 'bootstrap', '0.5.2');
-                    set_script('summernote-id', 'lib/summernote.id-ID.js', 'summernote', '0.5.2');
-                    set_script('codemirror', 'lib/codemirror.js', 'jquery', '4.1');
-                    set_script('codemirror.xml', 'lib/codemirror.mode.xml.js', 'codemirror', '4.1');
+                    $locale = ( ($lang = get_lang_code()) != 'en' ? '.'.$lang.'-'.strtoupper($lang) : '' );
+                    set_script('summernote', 'bower/summernote/dist/summernote.min.js', 'bootstrap', '0.5.2');
+                    set_script('summernote-id', 'bower/summernote/lang/summernote.id-ID.js', 'summernote', '0.5.2');
+                    set_style('summernote', 'bower/summernote/dist/summernote.css', 'bootstrap', '0.5.2');
+
+                    set_script('codemirror', 'bower/codemirror/lib/codemirror.js', 'jquery', '4.3.0');
+                    set_script('codemirror-xml', 'bower/codemirror/mode/xml/xml.js', 'codemirror', '4.3.0');
 
                     if (!isset($height))
                     {
@@ -1166,18 +1173,18 @@ class Biform
                     break;
             }
 
-            if ($jqui_load)
+            if ( $jqui_load )
             {
-                set_script('jqui-core',         $jqui_path.'core.min.js', 'jquery', '1.10.4');
-                set_script('jqui-widget',       $jqui_path.'widget.min.js', 'jqui-core', '1.10.4');
-                set_script('jqui-button',       $jqui_path.'button.min.js', 'jqui-widget', '1.10.4');
-                set_script('jqui-mouse',        $jqui_path.'mouse.min.js', 'jqui-widget', '1.10.4');
-                set_script('jqui-position',     $jqui_path.'position.min.js', 'jqui-widget', '1.10.4');
-                set_script('jqui-touch',        'lib/jquery.ui.touch-punch.min.js', 'jqui-mouse', '0.2.3');
-                set_script('jquery-mousewheel', 'lib/jquery.mousewheel.min.js', 'jquery', '3.1.0');
+                set_script('jqui-core',         $jqui_path.'jquery.ui.core.min.js', 'jquery', '1.10.4');
+                set_script('jqui-widget',       $jqui_path.'jquery.ui.widget.min.js', 'jqui-core', '1.10.4');
+                set_script('jqui-button',       $jqui_path.'jquery.ui.button.min.js', 'jqui-widget', '1.10.4');
+                set_script('jqui-mouse',        $jqui_path.'jquery.ui.mouse.min.js', 'jqui-widget', '1.10.4');
+                set_script('jqui-position',     $jqui_path.'jquery.ui.position.min.js', 'jqui-widget', '1.10.4');
+                set_script('jqui-touch',        'bower/jqueryui-touch-punch/jquery.ui.touch-punch.min.js', 'jqui-mouse', '0.2.3');
+                set_script('jquery-mousewheel', 'bower/jquery-mousewheel/jquery.mousewheel.min.js', 'jquery', '3.1.0');
             }
 
-            if (isset($input))
+            if ( isset($input) )
             {
                 $html .= $is_sub == FALSE ? $this->_form_common($field_attrs, $input) : $input;
             }

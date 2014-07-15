@@ -100,7 +100,7 @@ class Biauth_group_perms extends CI_Driver
     {
         if ( count( $permissions ) > 0 )
         {
-            $related_permission = $this->get_group_perms( $group_id );
+            $related_permission = $this->fetch( $group_id );
 
             foreach ($permissions as $perm_id)
             {

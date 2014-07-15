@@ -69,13 +69,17 @@ class Biauth_groups extends CI_Driver
 
     // -------------------------------------------------------------------------
 
-    public function set( $group_data = array() )
-    {}
+    public function set( $group_data = array(), $user_id )
+    {
+        return true;
+    }
 
     // -------------------------------------------------------------------------
 
-    public function add( $group_data = array() )
-    {}
+    public function add( $group_data = array(), $user_id )
+    {
+        return true;
+    }
 
     // -------------------------------------------------------------------------
 
@@ -120,12 +124,16 @@ class Biauth_groups extends CI_Driver
     // -------------------------------------------------------------------------
 
     public function change( $group_id, $group_data = array() )
-    {}
+    {
+        return true;
+    }
 
     // -------------------------------------------------------------------------
 
     public function delete( $group_id )
-    {}
+    {
+        return true;
+    }
 
     // -------------------------------------------------------------------------
 

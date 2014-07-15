@@ -63,22 +63,24 @@ class Biasset
         $this->_ci->config->load('biasset');
         $this->_ci->load->helper('biasset');
 
-        if ($autoloads = $this->_ci->config->item('biasset_autoload'))
-        {
-            foreach ($autoloads as $type => $asset)
-            {
-                if (count($asset) > 0)
-                {
-                    foreach ($asset as $name => $path)
-                    {
-                        $callback = 'set_'.$type;
-                        $this->$callback($name, $path);
-                    }
-                }
-            }
-        }
+        $this->initialize('style');
+        $this->initialize('script');
 
         log_message('debug', "#BootIgniter: Biasset Class Initialized");
+    }
+
+    // -------------------------------------------------------------------------
+
+    protected function initialize( $type )
+    {
+        if ( $assets = $this->_ci->config->item('biasset_autoload_'.$type) )
+        {
+            foreach ( $assets as $name => $path )
+            {
+                $callback = 'set_'.$type;
+                $this->$callback( $name, $path );
+            }
+        }
     }
 
     // -------------------------------------------------------------------------

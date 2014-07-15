@@ -76,6 +76,7 @@ class Auth extends MY_Controller
             'name'     => 'login',
             'action'   => current_url(),
             'fields'   => $fields,
+            'is_hform' => FALSE,
             'hiddens'  => array(
                 'goto' => $this->input->get('from'),
                 ),
@@ -87,7 +88,7 @@ class Auth extends MY_Controller
 
         if ( $input = $form->validate_submition() )
         {
-            $goto = $this->biauth->login( $input['username'], $input['password'], $input['remember'] ) ? $input['goto'] : current_url();
+            $goto = $this->biauth->login( $input['username'], $input['password'], $input['remember'] ) ? 'photo' : current_url();
 
             foreach ( get_message() as $level => $item )
             {
@@ -122,6 +123,12 @@ class Auth extends MY_Controller
         }
 
         $fields[] = array(
+            'name'  => 'display',
+            'type'  => 'text',
+            'label' => 'Display',
+            'validation'=> 'required' );
+
+        $fields[] = array(
             'name'  => 'email',
             'type'  => 'text',
             'label' => 'Email',
@@ -139,16 +146,16 @@ class Auth extends MY_Controller
             'label' => 'Ulangi Password',
             'validation'=> 'required|matches[password]' );
 
-        if ( (bool) $this->bootigniter->get_setting('auth_captcha_registration') )
-        {
-            $captcha = (bool) $this->bootigniter->get_setting('auth_use_recaptcha') ? 'recaptcha' : 'captcha';
+        // if ( (bool) $this->bootigniter->get_setting('auth_captcha_registration') )
+        // {
+        //     $captcha = (bool) $this->bootigniter->get_setting('auth_use_recaptcha') ? 'recaptcha' : 'captcha';
 
-            $fields[] = array(
-                'name'  => $captcha,
-                'type'  => $captcha,
-                'label' => 'Validasi',
-                'validation'=> 'required|valid_'.$captcha);
-        }
+        //     $fields[] = array(
+        //         'name'  => $captcha,
+        //         'type'  => $captcha,
+        //         'label' => 'Validasi',
+        //         'validation'=> 'required|valid_'.$captcha);
+        // }
 
         $buttons[] = array(
             'name'  => 'register',
@@ -180,7 +187,7 @@ class Auth extends MY_Controller
 
         if ( $form_data = $form->validate_submition() )
         {
-            $goto = $this->biauth->create_user( $form_data['username'], $form_data['email'], $form_data['password'] ) ? 'notice/registration-success' : current_url();
+            $goto = $this->biauth->create_user( $form_data ) ? 'notice/registration-success' : current_url();
 
             foreach ( get_message() as $level => $item )
             {

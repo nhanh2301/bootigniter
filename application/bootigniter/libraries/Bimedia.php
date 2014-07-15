@@ -91,6 +91,7 @@ class Bimedia
         $this->_ci =& get_instance();
 
         $this->_ci->config->load('bimedia');
+        $this->_ci->lang->load('bimedia');
 
         $this->allowed_types    = $this->_ci->config->item('bimedia_allowed_types');
         $this->post_max_size    = return_bytes(ini_get('post_max_size'));
@@ -149,7 +150,8 @@ class Bimedia
     public function template()
     {
         // Load the JS
-        set_script('jq-fineuploader', 'lib/jquery.fineuploader.min.js', 'bootstrap', '4.4.0');
+        set_script('jq-fineuploader', 'bower/fineuploader-dist/dist/jquery.fineuploader.min.js', 'bootstrap', '5.0.3');
+        set_style('jq-fineuploader', 'bower/fineuploader-dist/dist/fineuploader.min.css', 'bootstrap', '5.0.3');
 
         $upload_path = str_replace(FCPATH, '', $this->destination);
 

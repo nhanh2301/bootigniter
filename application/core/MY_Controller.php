@@ -8,6 +8,8 @@
  */
 class MY_Controller extends CI_Controller
 {
+    protected $current_user;
+
     /**
      * Default class constructor
      */
@@ -17,6 +19,11 @@ class MY_Controller extends CI_Controller
 
         $this->data['panel_title']  = '';
         $this->data['panel_body']   = '';
+
+        if ( $this->biauth->is_logged_in() )
+        {
+            $this->current_user = $this->biauth->get_current_user();
+        }
 
         log_message('debug', "#BootIgniter: Core Controller Class Initialized");
     }

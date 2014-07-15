@@ -23,12 +23,12 @@ $config['biasset_path_prefix'] = 'asset/';
 |--------------------------------------------------------------------------
 */
 
-$config['biasset_autoload']['style'] = array(
+$config['biasset_autoload_style'] = array(
     'bootstrap'   => 'bower/bootstrap/dist/css/bootstrap.min.css',
     'bootigniter' => 'css/bootigniter.min.css',
     );
 
-$config['biasset_autoload']['script'] = array(
+$config['biasset_autoload_script'] = array(
     'jquery'      => 'bower/jquery/dist/jquery.min.js',
     'bootstrap'   => 'bower/bootstrap/dist/js/bootstrap.min.js',
     'bootigniter' => 'js/bootigniter.min.js',

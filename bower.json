@@ -43,8 +43,11 @@
     "jquery-autosize": "~1.18.9",
     "select2": "~3.5.0",
     "morrisjs": "~0.5.1",
-    "fine-uploader": "~5.0.3",
     "summernote": "~0.5.1",
-    "font-awesome": "~4.1.0"
+    "font-awesome": "~4.1.0",
+    "codemirror": "~4.3.0",
+    "DataTables": "~1.10.1",
+    "datatables-plugins": "*",
+    "fineuploader-dist": "~5.0.3"
   }
 }

@@ -112,35 +112,21 @@ class Biauth_users extends CI_Driver
      * @param  array  $user_data  User data fields
      * @param  bool   $activated  Set it `True` if you want to directly activate
      *                            this user, and `False` for otherwise
-     * @param  array  $groups      User groups
-     *
      * @return bool
      */
-    public function add( array $user_data, $activated = FALSE, $groups = array() )
+    public function add( array $user_data, $activated = FALSE )
     {
-        $user_data['last_ip']       = $this->input->ip_address();
-        $user_data['created']       = date('Y-m-d H:i:s');
-        $user_data['last_login']    = date('Y-m-d H:i:s');
-        $user_data['activated']     = $activated ? 1 : 0;
+        // $user_data['last_ip']    = $this->_ci->input->ip_address();
+        $user_data['created']    = date('Y-m-d H:i:s');
+        // $user_data['last_login'] = date('Y-m-d H:i:s');
+        $user_data['activated']  = $activated ? 1 : 0;
 
         if ( !$this->db->insert( $this->table['users'], $user_data ) )
         {
             return FALSE;
         }
 
-        $user_id = $this->db->insert_id();
-
-        if ( $activated )
-        {
-            $this->set_user_meta( $user_id );
-
-            if ( count( $groups ) > 0 )
-            {
-                $this->set_user_groups( $user_id, $groups );
-            }
-        }
-
-        return $user_id;
+        return $this->db->insert_id();
     }
 
     // -------------------------------------------------------------------------
@@ -172,7 +158,7 @@ class Biauth_users extends CI_Driver
         {
             if (!empty($groups))
             {
-                return $this->edit_user_groups($user_id, $groups);
+                return $this->user_groups->edit($user_id, $groups);
             }
 
             return TRUE;

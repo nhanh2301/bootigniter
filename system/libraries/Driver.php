@@ -78,8 +78,8 @@ class CI_Driver_Library {
 			}
 
 			$obj = new $child_class;
-			$obj->decorate($this);
 			$this->$child = $obj;
+			$obj->decorate($this);
 			return $this->$child;
 		}
 
@@ -150,6 +150,7 @@ class CI_Driver {
 					$this->properties[] = $prop->getName();
 				}
 			}
+			// var_dump($this->methods);
 
 			self::$reflections[$class_name] = array($this->methods, $this->properties);
 		}
@@ -199,6 +200,10 @@ class CI_Driver {
 		{
 			return $this->parent->$var;
 		}
+
+		$trace = debug_backtrace();
+		_exception_handler(E_ERROR, "No such property '{$var}'", $trace[1]['file'], $trace[1]['line']);
+		exit;
 	}
 
 	// --------------------------------------------------------------------
