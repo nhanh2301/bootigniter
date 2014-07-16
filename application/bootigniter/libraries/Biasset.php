@@ -19,35 +19,30 @@ class Biasset
 {
     /**
      * Codeigniter superobject
-     *
      * @var  resource
      */
     protected $_ci;
 
     /**
      * Configurations
-     *
      * @var  array
      */
     protected $configs   = array();
 
     /**
      * Datas
-     *
      * @var  array
      */
     protected $_data     = array();
 
     /**
      * Scripts Wrapper
-     *
      * @var  array
      */
     protected $_scripts  = array();
 
     /**
      * Styles Wrapper
-     *
      * @var  array
      */
     protected $_styles   = array();
@@ -71,6 +66,12 @@ class Biasset
 
     // -------------------------------------------------------------------------
 
+    /**
+     * Initializing
+     *
+     * @param   string  $type  Asset type
+     * @return  void
+     */
     protected function initialize( $type )
     {
         if ( $assets = $this->_ci->config->item('biasset_autoload_'.$type) )
@@ -86,6 +87,40 @@ class Biasset
     // -------------------------------------------------------------------------
 
     /**
+     * Get all scripts you need on the page
+     *
+     * @return  array
+     */
+    public function get_script( $pos )
+    {
+        if ( isset( $this->_scripts[$pos] ) )
+        {
+            return $this->_scripts[$pos];
+        }
+
+        return FALSE;
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
+     * Get all styles you need on the page
+     *
+     * @return  array
+     */
+    public function get_styles()
+    {
+        if ( isset( $this->_styles ) )
+        {
+            return $this->_styles;
+        }
+
+        return FALSE;
+    }
+
+    // -------------------------------------------------------------------------
+
+    /**
      * Setup the scripts that you want to loaded on the page
      *
      * @param   string  $id           Script Identifier
@@ -95,21 +130,21 @@ class Biasset
      * @param   bool    $in_foot      load in foot or head
      * @return  void
      */
-    public function set_script($id, $source_path, $depend = '', $version = '', $in_foot = TRUE)
+    public function set_script( $id, $source_path, $depend = '', $version = '', $in_foot = TRUE )
     {
-        $pos = (!$in_foot ? 'head' : 'foot');
+        $pos = ( !$in_foot ? 'head' : 'foot' );
 
-        $source_file = $this->_get_asset($id, $source_path, $version);
+        $source_file = $this->_get_asset( $id, $source_path, $version );
 
-        if (is_valid_url($source_file))
+        if ( is_valid_url( $source_file ) )
         {
-            if (isset($this->_scripts[$pos][$depend]))
+            if ( isset( $this->_scripts[$pos][$depend] ) )
             {
-                foreach ($this->_scripts[$pos] as $dep_id => $dep_url)
+                foreach ( $this->_scripts[$pos] as $dep_id => $dep_url )
                 {
                     $temp_scripts[$dep_id] = $dep_url;
 
-                    if ($dep_id === $depend)
+                    if ( $dep_id === $depend )
                     {
                         $temp_scripts[$id] = $source_file;
                     }
@@ -131,23 +166,6 @@ class Biasset
     // -------------------------------------------------------------------------
 
     /**
-     * Get all scripts you need on the page
-     *
-     * @return  array
-     */
-    public function get_script($pos)
-    {
-        if (isset($this->_scripts[$pos]))
-        {
-            return $this->_scripts[$pos];
-        }
-
-        return FALSE;
-    }
-
-    // -------------------------------------------------------------------------
-
-    /**
      * Setup the styles that you want to loaded on the page
      *
      * @param   string  $id           Style Identifier
@@ -156,19 +174,19 @@ class Biasset
      * @param   string  $version      Version number of the style
      * @return  void
      */
-    public function set_style($id, $source_path, $depend = '', $version = NULL)
+    public function set_style( $id, $source_path, $depend = '', $version = NULL )
     {
-        $source_file = $this->_get_asset($id, $source_path, $version);
+        $source_file = $this->_get_asset( $id, $source_path, $version );
 
-        if (is_valid_url($source_file))
+        if ( is_valid_url( $source_file ) )
         {
-            if (isset($this->_styles[$depend]))
+            if ( isset( $this->_styles[$depend] ) )
             {
-                foreach ($this->_styles as $dep_id => $dep_url)
+                foreach ( $this->_styles as $dep_id => $dep_url )
                 {
                     $temp_styles[$dep_id] = $dep_url;
 
-                    if ($dep_id === $depend)
+                    if ( $dep_id === $depend )
                     {
                         $temp_styles[$id] = $source_file;
                     }
@@ -190,23 +208,6 @@ class Biasset
     // -------------------------------------------------------------------------
 
     /**
-     * Get all styles you need on the page
-     *
-     * @return  array
-     */
-    public function get_styles()
-    {
-        if (isset($this->_styles))
-        {
-            return $this->_styles;
-        }
-
-        return FALSE;
-    }
-
-    // -------------------------------------------------------------------------
-
-    /**
      * Make sure the required assets are in right place :P
      *
      * @param   string  $id           Asset Identifier which can't be redundant
@@ -214,18 +215,18 @@ class Biasset
      * @param   string  $version      Asset Version number
      * @return  string
      */
-    protected function _get_asset($id, $source_path, $version = '')
+    protected function _get_asset( $id, $source_path, $version = '' )
     {
-        $version || $version = $this->_ci->config->item('application_version');
-        $path    = $this->_ci->config->item('biasset_path_prefix');
+        $version || $version = $this->_ci->config->item( 'application_version' );
+        $path    = $this->_ci->config->item( 'biasset_path_prefix' );
         $output  = '';
-        $version = (strpos($source_path, '?') !== FALSE ? '&' :  '?').'ver='.$version;
+        $version = ( strpos( $source_path, '?' ) !== FALSE ? '&' :  '?' ).'ver='.$version;
 
-        if (file_exists(FCPATH.$path.$source_path))
+        if ( file_exists( FCPATH.$path.$source_path ) )
         {
-            $output = base_url($path.$source_path);
+            $output = base_url( $path.$source_path );
         }
-        else if (is_valid_url($source_path))
+        else if ( is_valid_url( $source_path ) )
         {
             $output = $source_path;
         }
