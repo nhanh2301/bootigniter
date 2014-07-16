@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <phpunit
-    bootstrap="application/tests/backend/bootstrap.php"
+    bootstrap="tests/application/bootstrap.php"
     colors="true"
     convertErrorsToExceptions="true"
     convertNoticesToExceptions="true"
@@ -17,13 +17,12 @@
     </php>
     <testsuites>
         <testsuite name="CodeIgniter App Test Suite">
-            <directory surfix="test.php">application/tests/backend</directory>
+            <directory surfix="test.php">tests/application</directory>
         </testsuite>
     </testsuites>
     <filter>
-        <blacklist>
-            <directory suffix=".php">system</directory>
-            <directory suffix=".php">vendor</directory>
-        </blacklist>
+        <whitelist>
+            <directory suffix=".php">application</directory>
+        </whitelist>
     </filter>
 </phpunit>

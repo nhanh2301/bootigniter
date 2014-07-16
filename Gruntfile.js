@@ -49,7 +49,7 @@ module.exports = function(grunt) {
         bin: 'vendor/bin/phpunit'
       },
       backend: {
-        dir: 'application/tests/backend'
+        dir: 'tests/application'
       }
     },
 
