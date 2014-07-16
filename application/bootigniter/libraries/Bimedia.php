@@ -10,78 +10,47 @@
 // -----------------------------------------------------------------------------
 
 /**
- * BootIgniter Bimedia Class
+ * BootIgniter Upload Class
  *
  * @subpackage  Libraries
  * @category    Media Manager
  */
-class Bimedia
+class Biupload
 {
     /**
      * Codeigniter superobject
-     *
      * @var  mixed
      */
     protected $_ci;
 
     /**
-     * File type yang diijinkan
-     *
-     * @var  string
+     * CI_Upload superobject
+     * @var  mixed
      */
-    protected $allowed_types = 'gif|jpg|jpeg|png';
+    protected $_ci_upload;
 
     /**
-     * Ukuran file maksimum yang diijinkan
-     *
-     * @var  string
-     */
-    protected $post_max_size;
-
-    /**
-     * Ukuran file maksimum yang diijinkan
-     *
-     * @var  string
-     */
-    protected $upload_max_size;
-
-    /**
-     * Batas jumlah file dalam 1x proses upload
-     *
+     * Maximum upload files limit
      * @var  int
      */
-    protected $file_limit = 5;
-
-    /**
-     * Path target upload
-     *
-     * @var  string
-     */
-    protected $destination;
-
-    /**
-     * File name encriptions
-     *
-     * @var  bool
-     */
-    protected $encript_name = TRUE;
+    protected $max_upload_files = 5;
 
     /**
      * Nama field yang dipakai untuk upload.
      * Default menggunakan nama bawaan CI
-     *
      * @var  string
      */
     protected $field_name = 'userfile';
 
     /**
-     * Upload data
-     *
-     * @deprecated
-     *
-     * @var  array
+     * Configuration
+     * @var  string
      */
-    protected $_data = array();
+    protected $configs = array(
+        'allowed_types'   => '',
+        'auto_thumbnail'  => FALSE,
+        'upload_endpoint' => '',
+        );
 
     /**
      * Default class constructor
@@ -89,21 +58,17 @@ class Bimedia
     public function __construct( array $configs = array() )
     {
         $this->_ci =& get_instance();
+        $this->_ci_upload =& load_class( 'upload', 'library' );
 
         $this->_ci->config->load('bimedia');
         $this->_ci->lang->load('bimedia');
-
-        $this->allowed_types    = $this->_ci->config->item('bimedia_allowed_types');
-        $this->post_max_size    = return_bytes(ini_get('post_max_size'));
-        $this->upload_max_size  = return_bytes(ini_get('upload_max_filesize'));
-        $this->destination      = $this->_ci->config->item('bimedia_upload_path');
 
         if ( !empty( $configs ) )
         {
             $this->initialize( $configs );
         }
 
-        log_message('debug', "#BootIgniter: Bimedia Class Initialized");
+        log_message('debug', "#BootIgniter: Biupload Class Initialized");
     }
 
     /**
@@ -116,11 +81,13 @@ class Bimedia
     {
         foreach ($configs as $key => $val)
         {
-            if (isset($this->$key))
+            if (isset($this->configs[$key]))
             {
-                $this->$key = $val;
+                $this->configs[$key] = $val;
             }
         }
+
+        $this->_ci_upload->set_allowed_types( $this->configs['allowed_types'] );
 
         return $this;
     }
@@ -133,27 +100,21 @@ class Bimedia
      */
     public function get_html( $identifier )
     {
-        $attr  = 'data-allowed-ext="'.$this->allowed_types.'" ';
+        $attr  = 'data-allowed-ext="'.$this->_ci_upload->allowed_types.'" ';
         $attr .= 'data-item-limit="'.$this->file_limit.'" ';
-        $attr .= 'data-size-limit="'.$this->post_max_size.'" ';
+        $attr .= 'data-size-limit="'.$this->_ci_upload->post_max_size.'" ';
         $attr .= 'data-field-name="'.$identifier.'" ';
 
         return '<div class="fine-uploader row" '.$attr.'></div>';
     }
 
-    /**
-     * Uploader template.
-     * Default FineUploader template
-     *
-     * @return  string
-     */
-    public function template()
+    protected function _scripts()
     {
         // Load the JS
         set_script('jq-fineuploader', 'bower/fineuploader-dist/dist/jquery.fineuploader.min.js', 'bootstrap', '5.0.3');
         set_style('jq-fineuploader', 'bower/fineuploader-dist/dist/fineuploader.min.css', 'bootstrap', '5.0.3');
 
-        $upload_path = str_replace(FCPATH, '', $this->destination);
+        $upload_path = str_replace(FCPATH, '', $this->_ci_upload->upload_path);
 
         // Uploader trigger
         $script = "$('.fine-uploader').each(function() {\n"
@@ -165,7 +126,7 @@ class Bimedia
                 . "        template: 'qq-template',\n"
                 . "        request: {\n"
                 // . "            endpoint: '".current_url()."?do=fineupload',\n"
-                . "            endpoint: '".base_url('ajaks/upload')."?limit='+fuLimit+'&types='+fuTypes,\n"
+                . "            endpoint: '".$this->configs['upload_endpoint']."',\n"
                 . "            inputName: '".$this->field_name."'\n"
                 . "        },\n"
                 . "        validation: {\n"
@@ -232,57 +193,22 @@ class Bimedia
                 . "});";
 
         set_script('jq-fineuploader-trigger', $script, 'jq-fineuploader');
-
-        // Default qq-template
-        $out = '<script type="text/template" id="qq-template">'
-             . '<div class="col-md-12"><div class="qq-upload-selector">'
-             . '    <div class="qq-upload-drop-area-selector" qq-hide-dropzone>'
-             . '        <span>'._x('bimedia_drop_area_selector_text').'</span>'
-             . '    </div>'
-             . '    <div class="qq-upload-button-selector btn btn-default">'
-             . '        <span>'._x('bimedia_upload_button_selector_text').'</span>'
-             . '    </div>'
-             . '    <div class="qq-drop-processing-selector qq-hide">'
-             . '        <span class="qq-drop-processing-spinner-selector"></span>'
-             . '        <span>'._x('bimedia_drop_processing_selector_text').'</span>'
-             . '    </div>'
-             . '    <ul class="qq-upload-list-selector row panel-group" id="accordion">'
-             . '        <li class="panel panel-default col-md-12">'
-             . '        <div class="panel-heading">'
-             . '            <span class="qq-upload-spinner-selector"></span>'
-             . '            <a class="qq-upload-file-selector" data-toggle="collapse" data-parent="#accordion" href="#"></a>'
-             // . '            <span class="qq-edit-filename-icon-selector"></span>'
-             // . '            <input class="qq-edit-filename-selector" tabindex="0" type="text">'
-             . '            <span class="qq-upload-size-selector"></span>'
-             . '            <span class="qq-upload-status-text-selector"></span>'
-             // . '            <div class="upload-action-buttons btn-group">'
-             // . '                <button type="button" class="btn btn-default qq-upload-cancel-selector"><i class="fa fa-ban"></i></button>'
-             // . '                <button type="button" class="btn btn-default qq-upload-retry-selector"><i class="fa fa-refresh"></i></button>'
-             // . '                <button type="button" class="btn btn-default qq-upload-delete-selector"><i class="fa fa-trash-o"></i></button>'
-             // . '            </div>'
-             . '            <div class="qq-progress-bar-container-selector">'
-             . '                <div class="qq-progress-bar-selector"></div>'
-             . '            </div>'
-             . '        </div>'
-             . '        <div id="" class="panel-collapse collapse"><div class="panel-body"></div></div>'
-             . '        </li>'
-             . '    </ul>'
-             . '</div></div>'
-             . '</script>';
-
-        return $out;
     }
 
     /**
-     * Get uploaded datas
+     * Uploader template.
+     * Default FineUploader template
      *
-     * @deprecated
-     *
-     * @return  array
+     * @return  string
      */
-    public function uploaded_data()
+    public function template()
     {
-        return $this->_data;
+        // Default qq-template
+        $out = '<script type="text/template" id="qq-template">'
+             . $this->_ci->load->view( 'layouts/upload', array(), TRUE )
+             . '</script>';
+
+        return $out;
     }
 
     /**
@@ -292,9 +218,9 @@ class Bimedia
      */
     public function upload_policy()
     {
-        $_types         = explode( '|', $this->allowed_types );
-        $_c_types       = count( $_types );
-        $_file_types    = '';
+        $_types      = explode( '|', $this->_ci_upload->allowed_types );
+        $_c_types    = count( $_types );
+        $_file_types = '';
 
         for ($i = 0; $i < $_c_types; $i++)
         {
@@ -315,19 +241,11 @@ class Bimedia
     {
         if ( isset( $_FILES[$this->field_name] ) )
         {
-            $this->_ci->load->library( 'upload', array(
-                'upload_path'   => $this->destination,
-                'allowed_types' => $this->allowed_types,
-                'encrypt_name'  => $this->encript_name,
-                'max_size'      => $this->upload_max_size,
-                ));
-
-            if ( $this->_ci->upload->do_upload( $this->field_name ) )
+            if ( $this->_ci_upload->do_upload( $this->field_name ) )
             {
-                $uploaded_data = $this->_ci->upload->data();
-                log_message( 'debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" uploaded successfuly.' );
+                $uploaded_data = $this->_ci_upload->data();
 
-                if ( $this->is_image( $uploaded_data['file_type'] ) )
+                if ( $this->configs['auto_thumbnail'] and $uploaded_data['is_image'] )
                 {
                     $uploaded_thumb = 'thumbs'.DS.$uploaded_data['file_name'];
                     $this->_ci->load->library( 'image_lib', array(
@@ -340,21 +258,26 @@ class Bimedia
                     if ( $this->_ci->image_lib->resize() )
                     {
                         $uploaded_data['image_thumbnail'] = $uploaded_thumb;
-                        log_message( 'debug', '#BootIgniter: Bimedia->do_upload file "'.$uploaded_data['orig_name'].'" has been resized.' );
+                        log_message( 'debug', '#BootIgniter: Biupload->do_upload file "'.$uploaded_data['orig_name'].'" has been resized.' );
+                    }
+                    else
+                    {
+                        $error_message = $this->image_lib->display_errors('', '');
+                        log_message( 'debug', '#BootIgniter: Biupload->do_upload failed due to this error(s): '.$error_message.'.' );
+                        set_message( 'error', $error_message );
+                        return FALSE;
                     }
                 }
 
+                log_message( 'debug', '#BootIgniter: Biupload->do_upload file "'.$uploaded_data['orig_name'].'" uploaded successfuly.' );
                 return $uploaded_data;
             }
             else
             {
                 // Grab the error(s)
-                $error_message = $this->_ci->upload->display_errors('', '');
-                // Log it
-                log_message( 'debug', '#BootIgniter: Bimedia->do_upload failed due to this error(s): '.$error_message.'.' );
-                // Set error message
+                $error_message = $this->_ci_upload->display_errors('', '');
+                log_message( 'debug', '#BootIgniter: Biupload->do_upload failed due to this error(s): '.$error_message.'.' );
                 set_message( 'error', $error_message );
-                // Return it
                 return FALSE;
             }
         }
@@ -364,41 +287,7 @@ class Bimedia
             return FALSE;
         }
     }
-
-    // --------------------------------------------------------------------
-
-    /**
-     * Validate the image
-     *
-     * @return  bool
-     */
-    protected function is_image( $file_type )
-    {
-        // IE will sometimes return odd mime-types during upload, so here we just standardize all
-        // jpegs or pngs to the same file type.
-
-        $png_mimes  = array('image/x-png');
-        $jpeg_mimes = array('image/jpg', 'image/jpe', 'image/jpeg', 'image/pjpeg');
-
-        if ( in_array( $file_type, $png_mimes ) )
-        {
-            $file_type = 'image/png';
-        }
-
-        if ( in_array( $file_type, $jpeg_mimes ) )
-        {
-            $file_type = 'image/jpeg';
-        }
-
-        $img_mimes = array(
-            'image/gif',
-            'image/jpeg',
-            'image/png',
-            );
-
-        return ( in_array( $file_type, $img_mimes, TRUE ) ) ? TRUE : FALSE;
-    }
 }
 
-/* End of file Bimedia.php */
-/* Location: ./bootigniter/libraries/Bimedia.php */
+/* End of file Biupload.php */
+/* Location: ./bootigniter/libraries/Biupload.php */
