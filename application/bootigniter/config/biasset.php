@@ -24,8 +24,9 @@ $config['biasset_path_prefix'] = 'asset/';
 */
 
 $config['biasset_autoload_style'] = array(
-    'bootstrap'   => 'bower/bootstrap/dist/css/bootstrap.min.css',
-    'bootigniter' => 'css/bootigniter.min.css',
+    'font-awesome' => 'bower/font-awesome/css/font-awesome.min.css',
+    'bootstrap'    => 'bower/bootstrap/dist/css/bootstrap.min.css',
+    'bootigniter'  => 'css/bootigniter.min.css',
     );
 
 $config['biasset_autoload_script'] = array(

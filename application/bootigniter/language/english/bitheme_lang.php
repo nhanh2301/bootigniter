@@ -11,8 +11,6 @@
 
 // -----------------------------------------------------------------------------
 
-$lang['bitheme_submit_btn']  = 'Simpan';
-$lang['bitheme_reset_btn']   = 'Batal';
 $lang['bitheme_print_btn']   = 'Cetak';
 $lang['bitheme_backup_btn']  = 'Backup sekarang';
 $lang['bitheme_restore_btn'] = 'Restore sekarang';

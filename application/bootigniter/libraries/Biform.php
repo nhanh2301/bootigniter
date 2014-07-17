@@ -200,12 +200,12 @@ class Biform
         if ( isset( $attrs['is_hform'] )  )
         {
             $this->is_hform = $attrs['is_hform'];
+        }
 
-            // make it horizontal form by default
-            if ( $this->is_hform == TRUE )
-            {
-                $this->_attrs['class'] .= ' form-horizontal';
-            }
+        // make it horizontal form by default
+        if ( $this->is_hform == TRUE )
+        {
+            $this->_attrs['class'] .= ' form-horizontal';
         }
 
         // set-up HTML5 role attribute
@@ -438,8 +438,8 @@ class Biform
         if ( $this->is_multipart === TRUE )
         {
             $this->_attrs['enctype'] = 'multipart/form-data';
-            $this->_ci->load->library( 'bimedia' );
-            $html .= $this->_ci->bimedia->template();
+            $this->_ci->load->library( 'biupload' );
+            $html .= $this->_ci->biupload->template();
         }
 
         // If you have additional form attributes, merge it.
@@ -647,6 +647,8 @@ class Biform
                 case 'search':
                 case 'tel':
                 case 'password':
+                case 'number':
+                case 'date':
                 case 'text':
                     $input = form_input( array(
                                 'name'  => $name,
@@ -657,7 +659,6 @@ class Biform
                     break;
 
                 // Jquery-UI Spinner
-                case 'number':
                 case 'spinner':
                     $jqui_load = TRUE;
                     set_script( 'jqui-spinner', $jqui_path.'jquery.ui.spinner.min.js', 'jqui-core', '1.10.4' );
@@ -836,11 +837,15 @@ class Biform
                     break;
 
                 // Date picker field
-                case 'date':
                 case 'datepicker':
+                    set_script( 'bt-datepicker', 'bower/bootstrap-datepicker/js/bootstrap-datepicker.js', 'bootstrap', '1.3.0' );
+                    set_style( 'bt-datepicker', 'bower/bootstrap-datepicker/css/datepicker3.css', 'bootstrap', '1.3.0' );
+
                     $locale = ( ( $code = get_lang_code() ) != 'en' ? '.'.$code : '' );
-                    set_script( 'bt-datepicker', 'bower/js/bootstrap.datepicker.js', 'bootstrap', '1.1.1' );
-                    set_script( 'bt-datepicker-id', 'bower/js/locales/bootstrap.datepicker'.$locale.'.js', 'bt-datepicker', '1.1.1' );
+                    if ( $locale )
+                    {
+                        set_script( 'bt-datepicker-id', 'bower/bootstrap-datepicker/js/locales/bootstrap-datepicker'.$locale.'.js', 'bt-datepicker', '1.3.0' );
+                    }
 
                     $script = "$('.bs-datepicker').datepicker({\n"
                             . "    format: 'dd-mm-yyyy',\n"
@@ -849,7 +854,7 @@ class Biform
                             . "    todayBtn: true\n"
                             . "});";
 
-                    set_script('dp-trigger', $script, 'bt-datepicker');
+                    set_script('bt-datepicker-trigger', $script, 'bt-datepicker');
 
                     $input = '<div class="has-feedback">';
                     $input .= form_input( array(
@@ -888,12 +893,21 @@ class Biform
                     if ( !isset( $file_limit ) ) $file_limit = 5;
                     if ( is_array( $allowed_types ) ) $allowed_types = implode( '|', $allowed_types );
 
-                    $uploader = $this->_ci->bimedia->initialize( array(
+                    $uploader = $this->_ci->biupload->initialize( array(
                         'allowed_types' => $allowed_types,
                         'file_limit'    => $file_limit,
                         ));
 
-                    $field_attrs['desc'] .= $uploader->upload_policy();
+                    $desc = $uploader->upload_policy();
+
+                    if ( isset( $field_attrs['desc'] ) )
+                    {
+                        $field_attrs['desc'] .= '. '.$desc;
+                    }
+                    else
+                    {
+                        $field_attrs['desc'] = $desc;
+                    }
 
                     $input = $uploader->get_html( $name );
                     break;
@@ -901,20 +915,31 @@ class Biform
                 // Selectbox field
                 case 'multiselect':
                 case 'dropdown':
-                case 'select2':
-                    $locale = ( ( $code = get_lang_code( )) != 'en' ? '_'.$code : '' );
-                    set_script( 'select2', 'bower/select2/select2.min.js', 'jquery', '3.4.5' );
-                    set_script( 'select2-locale', 'bower/select2/select2'.$locale.'.js', 'jquery', '3.4.5' );
-                    set_script( 'select2-trigger', "$('.form-control-select2' ).select2();\n", 'select2' );
-                    set_style( 'select2', 'bower/select2/select2.css', 'bootstrap', '3.4.5' );
-
-                    $attr = 'class="form-control-select2 '.$input_class.'" id="'.$id.'" '.$attr;
+                    $native = ( isset( $native ) ? $native : FALSE );
+                    $control_class = '';
 
                     if ( $type == 'multiselect' ) $name = $name.'[]';
-                    if ( $type == 'select2' )     $type = 'dropdown';
+                    if ( $type == 'select2' )
+                    {
+                        $type = 'dropdown';
+                        $native = FALSE;
+                    }
+
+                    if ( $native == FALSE )
+                    {
+                        $locale = ( ( $code = get_lang_code( )) != 'en' ? '_'.$code : '' );
+                        set_script( 'select2', 'bower/select2/select2.min.js', 'jquery', '3.4.5' );
+                        set_script( 'select2-locale', 'bower/select2/select2'.$locale.'.js', 'jquery', '3.4.5' );
+                        set_script( 'select2-trigger', "$('.form-control-select2' ).select2();\n", 'select2' );
+                        set_style( 'select2', 'bower/select2/select2.css', 'bootstrap', '3.4.5' );
+
+                        $control_class = 'form-control-select2 ';
+                    }
+
+                    $attr = 'class="'.$control_class.$input_class.'" id="'.$id.'" '.$attr;
 
                     $form_func = 'form_'.$type;
-                    $input = $form_func( $name, $option, set_value( $name, $std ), $attr );
+                    $input = $form_func( $name, $options, set_value( $name, $std ), $attr );
                     break;
 
                 // Bootstrap Switch field
@@ -1011,7 +1036,7 @@ class Biform
                     break;
 
                 // Captcha field
-                case 'captcha':
+                case 'captcha   ':
                     $captcha     = str_replace( FCPATH, '', get_conf( 'base_path' ) );
                     $captcha_url = base_url( $captcha.'libraries/vendor/captcha/captcha'.EXT );
                     $image_id    = 'captcha-'.$id.'-img';
@@ -1055,13 +1080,15 @@ class Biform
 
                 // Summernote editor
                 case 'editor':
-                    $locale = ( ($lang = get_lang_code()) != 'en' ? '.'.$lang.'-'.strtoupper($lang) : '' );
+                    $locale = ( ($lang = get_lang_code()) != 'en' ? '-'.$lang.'-'.strtoupper($lang) : '' );
                     set_script( 'summernote', 'bower/summernote/dist/summernote.min.js', 'bootstrap', '0.5.2' );
-                    set_script( 'summernote-id', 'bower/summernote/lang/summernote.id-ID.js', 'summernote', '0.5.2' );
                     set_style( 'summernote', 'bower/summernote/dist/summernote.css', 'bootstrap', '0.5.2' );
+                    // set_style( 'summernote-bs3', 'bower/summernote/dist/summernote-bs3.css', 'summernote', '0.5.2' );
 
-                    set_script( 'codemirror', 'bower/codemirror/lib/codemirror.js', 'jquery', '4.3.0' );
+                    set_script( 'codemirror', 'bower/codemirror/lib/codemirror.js', 'summernote', '4.3.0' );
                     set_script( 'codemirror-xml', 'bower/codemirror/mode/xml/xml.js', 'codemirror', '4.3.0' );
+                    set_style( 'codemirror', 'bower/codemirror/lib/codemirror.css', 'summernote', '4.3.0' );
+                    set_style( 'codemirror-monokai', 'bower/codemirror/theme/monokai.css', 'codemirror', '4.3.0' );
 
                     if ( !isset( $height ) ) $height = 200;
 
@@ -1069,9 +1096,14 @@ class Biform
                             . "    var snel = $(this),\n"
                             . "        Hsnel = snel.data('edtr-height'),\n"
                             . "        Vsnel = snel.code();\n"
-                            . "    snel.summernote({\n"
-                            . "        lang: 'id-ID',\n"
-                            . "        height: Hsnel,\n"
+                            . "    snel.summernote({\n";
+                    if ( $locale )
+                    {
+                        set_script( 'summernote-id', 'bower/summernote/lang/summernote'.$locale.'.js', 'summernote', '0.5.2' );
+                        $script .="        lang: '".$locale."',\n";
+                    }
+
+                    $script .="        height: Hsnel,\n"
                             . "        codemirror: {\n"
                             . "            theme: 'monokai'\n"
                             . "        }\n"
@@ -1236,13 +1268,13 @@ class Biform
             $this->_buttons[] = array(
                 'name'  => 'submit',
                 'type'  => 'submit',
-                'label' => 'lang:submit_btn',
+                'label' => 'lang:biform_submit_btn',
                 'class' => 'pull-left btn-primary'
                 );
             $this->_buttons[] = array(
                 'name'  => 'reset',
                 'type'  => 'reset',
-                'label' => 'lang:reset_btn',
+                'label' => 'lang:biform_reset_btn',
                 'class' => 'pull-right btn-default'
                 );
         }

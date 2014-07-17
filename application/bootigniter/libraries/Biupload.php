@@ -58,10 +58,10 @@ class Biupload
     public function __construct( array $configs = array() )
     {
         $this->_ci =& get_instance();
-        $this->_ci_upload =& load_class( 'upload', 'library' );
+        $this->_ci_upload =& load_class( 'Upload', 'libraries' );
 
-        $this->_ci->config->load('bimedia');
-        $this->_ci->lang->load('bimedia');
+        $this->_ci->config->load('biupload');
+        $this->_ci->lang->load('biupload');
 
         if ( !empty( $configs ) )
         {
@@ -88,6 +88,7 @@ class Biupload
         }
 
         $this->_ci_upload->set_allowed_types( $this->configs['allowed_types'] );
+        $this->_scripts();
 
         return $this;
     }
@@ -100,9 +101,9 @@ class Biupload
      */
     public function get_html( $identifier )
     {
-        $attr  = 'data-allowed-ext="'.$this->_ci_upload->allowed_types.'" ';
-        $attr .= 'data-item-limit="'.$this->file_limit.'" ';
-        $attr .= 'data-size-limit="'.$this->_ci_upload->post_max_size.'" ';
+        $attr  = 'data-allowed-ext="'.implode( '|', $this->_ci_upload->allowed_types ).'" ';
+        $attr .= 'data-item-limit="'.$this->max_upload_files.'" ';
+        $attr .= 'data-size-limit="'.$this->_ci_upload->max_size.'" ';
         $attr .= 'data-field-name="'.$identifier.'" ';
 
         return '<div class="fine-uploader row" '.$attr.'></div>';
@@ -135,30 +136,30 @@ class Biupload
                 . "            sizeLimit: fu.data('size-limit')\n"
                 . "        },\n"
                 . "        retry: {\n"
-                . "            autoRetryNote: '"._x('bimedia_text_auto_retry_note')."',\n"
+                . "            autoRetryNote: '"._x('biupload_text_auto_retry_note')."',\n"
                 . "            enableAuto: true,\n"
                 . "            showButton: true,\n"
                 . "            maxAutoAttempts: 5\n"
                 . "        },\n"
                 . "        text: {\n"
-                . "            failUpload: '"._x('bimedia_text_fail_upload')."',\n"
-                . "            formatProgress: '"._x('bimedia_text_format_progress')."',\n"
-                . "            paused: '"._x('bimedia_text_paused')."',\n"
-                . "            waitingForResponse: '"._x('bimedia_text_waiting_response')."',\n"
+                . "            failUpload: '"._x('biupload_text_fail_upload')."',\n"
+                . "            formatProgress: '"._x('biupload_text_format_progress')."',\n"
+                . "            paused: '"._x('biupload_text_paused')."',\n"
+                . "            waitingForResponse: '"._x('biupload_text_waiting_response')."',\n"
                 . "        },\n"
                 . "        messages: {\n"
-                . "            emptyError: '"._x('bimedia_error_empty')."',\n"
-                . "            maxHeightImageError: '"._x('bimedia_error_max_height_image')."',\n"
-                . "            maxWidthImageError: '"._x('bimedia_error_max_width_image')."',\n"
-                . "            minHeightImageError: '"._x('bimedia_error_min_height_image')."',\n"
-                . "            minWidthImageError: '"._x('bimedia_error_min_width_image')."',\n"
-                . "            minSizeError: '"._x('bimedia_error_min_size')."',\n"
-                . "            noFilesError: '"._x('bimedia_error_no_files')."',\n"
-                . "            onLeave: '"._x('bimedia_error_on_leave')."',\n"
-                . "            retryFailTooManyItemsError: '"._x('bimedia_error_retry_fail_too_many_items')."',\n"
-                . "            sizeError: '"._x('bimedia_error_size')."',\n"
-                . "            tooManyItemsError: '"._x('bimedia_error_too_many_items')."',\n"
-                . "            typeError: '"._x('bimedia_error_type')."'\n"
+                . "            emptyError: '"._x('biupload_error_empty')."',\n"
+                . "            maxHeightImageError: '"._x('biupload_error_max_height_image')."',\n"
+                . "            maxWidthImageError: '"._x('biupload_error_max_width_image')."',\n"
+                . "            minHeightImageError: '"._x('biupload_error_min_height_image')."',\n"
+                . "            minWidthImageError: '"._x('biupload_error_min_width_image')."',\n"
+                . "            minSizeError: '"._x('biupload_error_min_size')."',\n"
+                . "            noFilesError: '"._x('biupload_error_no_files')."',\n"
+                . "            onLeave: '"._x('biupload_error_on_leave')."',\n"
+                . "            retryFailTooManyItemsError: '"._x('biupload_error_retry_fail_too_many_items')."',\n"
+                . "            sizeError: '"._x('biupload_error_size')."',\n"
+                . "            tooManyItemsError: '"._x('biupload_error_too_many_items')."',\n"
+                . "            typeError: '"._x('biupload_error_type')."'\n"
                 . "        }\n"
                 . "    }).on('error', function (event, id, name, reason) {\n"
                 . "        var selector = $('.qq-upload-status-text-selector');\n"
@@ -173,11 +174,11 @@ class Biupload
                 . "            uploadedObj = responseJSON.data,\n"
                 . "            uploadedFile = '<input type=\"hidden\" name=\"'+fuField+'[]\" value=\"'+responseJSON.data.file_name+'\" />',\n"
                 . "            fileDetail = '<dl class=\"upload-desc\">'\n"
-                . "                       + '<dt>"._x('bimedia_client_name')."</dt><dd>'+uploadedObj.client_name+'</dd>'\n"
-                . "                       + '<dt>"._x('bimedia_file_name')."</dt><dd>'+uploadedObj.file_name+'</dd>'\n"
-                . "                       + '<dt>"._x('bimedia_file_size')."</dt><dd>'+uploadedObj.file_size+'</dd>'\n"
-                . "                       + '<dt>"._x('bimedia_file_type')."</dt><dd>'+uploadedObj.file_type+'</dd>'\n"
-                . "                       + '<dt>"._x('bimedia_file_path')."</dt><dd>".$upload_path."</dd>'\n"
+                . "                       + '<dt>"._x('biupload_client_name')."</dt><dd>'+uploadedObj.client_name+'</dd>'\n"
+                . "                       + '<dt>"._x('biupload_file_name')."</dt><dd>'+uploadedObj.file_name+'</dd>'\n"
+                . "                       + '<dt>"._x('biupload_file_size')."</dt><dd>'+uploadedObj.file_size+'</dd>'\n"
+                . "                       + '<dt>"._x('biupload_file_type')."</dt><dd>'+uploadedObj.file_type+'</dd>'\n"
+                . "                       + '<dt>"._x('biupload_file_path')."</dt><dd>".$upload_path."</dd>'\n"
                 . "                       + '</dl>';\n"
                 . "        if(uploadedObj.image_thumbnail !== undefined) {\n"
                 . "            uploadId.find('.panel-body').append('<img src=\"".base_url($upload_path)."/'+uploadedObj.image_thumbnail+'\" alt=\"'+uploadedObj.client_name+'\" class=\"upload-file upload-preview img img-responsive\">')\n"
@@ -218,17 +219,22 @@ class Biupload
      */
     public function upload_policy()
     {
-        $_types      = explode( '|', $this->_ci_upload->allowed_types );
-        $_c_types    = count( $_types );
-        $_file_types = '';
+        $out = _x( 'biupload_upload_max_file', $this->max_upload_files );
 
-        for ($i = 0; $i < $_c_types; $i++)
+        if ( ($_c_types = count(( $_types = $this->_ci_upload->allowed_types ))) > 0 )
         {
-            $_file_types .= '<i class="bold">.'.strtoupper($_types[$i]).'</i>';
-            $_file_types .= ($i == ($_c_types-2) ? ' dan ' : '; ');
+            $_file_types = '';
+
+            for ($i = 0; $i < $_c_types; $i++)
+            {
+                $_file_types .= '<i class="bold">.'.strtoupper($_types[$i]).'</i>';
+                $_file_types .= ($i == ($_c_types-2) ? ' dan ' : '; ');
+            }
+
+            $out .= ' dan '._x( 'biupload_upload_file_type', $_file_types );
         }
 
-        return _x( 'bimedia_upload_policy', array( $this->file_limit, $_file_types ) );
+        return $out;
     }
 
     /**
@@ -251,8 +257,8 @@ class Biupload
                     $this->_ci->load->library( 'image_lib', array(
                         'source_image'  => $uploaded_data['full_path'],
                         'new_image'     => $uploaded_data['file_path'].$uploaded_thumb,
-                        'width'         => $this->_ci->config->item('bimedia_thumb_width'),
-                        'height'        => $this->_ci->config->item('bimedia_thumb_height'),
+                        'width'         => $this->_ci->config->item('biupload_thumb_width'),
+                        'height'        => $this->_ci->config->item('biupload_thumb_height'),
                         ));
 
                     if ( $this->_ci->image_lib->resize() )

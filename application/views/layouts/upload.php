@@ -1,14 +1,14 @@
 <div class="<?php echo twbs_set_columns( 12, 12, 12, 12 ) ?>">
     <div class="qq-upload-selector">
         <div class="qq-upload-drop-area-selector" qq-hide-dropzone>
-            <span><?php echo _x('bimedia_drop_area_selector_text') ?></span>
+            <span><?php echo _x('biupload_drop_area_selector_text') ?></span>
         </div>
         <div class="qq-upload-button-selector btn btn-default">
-            <span><?php echo _x('bimedia_upload_button_selector_text') ?></span>
+            <span><?php echo _x('biupload_upload_button_selector_text') ?></span>
         </div>
         <div class="qq-drop-processing-selector qq-hide">
             <span class="qq-drop-processing-spinner-selector"></span>
-            <span><?php echo _x('bimedia_drop_processing_selector_text') ?></span>
+            <span><?php echo _x('biupload_drop_processing_selector_text') ?></span>
         </div>
         <ul class="qq-upload-list-selector row panel-group" id="accordion">
             <li class="panel panel-default <?php echo twbs_set_columns( 12, 12, 12, 12 ) ?>">
