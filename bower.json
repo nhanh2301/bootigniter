@@ -43,7 +43,7 @@
     "jquery-autosize": "~1.18.9",
     "select2": "~3.5.0",
     "morrisjs": "~0.5.1",
-    "summernote": "git@github.com:feryardiant/summernote.git#develop",
+    "summernote": "https://github.com/feryardiant/summernote.git#develop",
     "codemirror": "~4.3.0",
     "DataTables": "~1.10.1",
     "datatables-plugins": "*",
