@@ -30,8 +30,7 @@
     "php": ">=5.2.4"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.1.0",
-    "phpunit/dbunit": ">=1.2"
+    "phpunit/phpunit": "3.7.37"
   },
   "minimum-stability": "dev"
 }
