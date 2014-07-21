@@ -180,10 +180,53 @@ class Sample extends MY_Controller
             'label'      => 'Summernote Field',
             );
 
+        $buttons[] = array(
+            'name'  => 'default-btn',
+            'type'  => 'button',
+            'label' => 'Default',
+            'class' => 'btn-default pull-left'
+            );
+
+        $buttons[] = array(
+            'name'  => 'primary-btn',
+            'type'  => 'button',
+            'label' => 'Primary',
+            'class' => 'btn-primary pull-left'
+            );
+
+        $buttons[] = array(
+            'name'  => 'success-btn',
+            'type'  => 'button',
+            'label' => 'Success',
+            'class' => 'btn-success pull-left'
+            );
+
+        $buttons[] = array(
+            'name'  => 'warning-btn',
+            'type'  => 'button',
+            'label' => 'Warning',
+            'class' => 'btn-warning pull-left'
+            );
+
+        $buttons[] = array(
+            'name'  => 'info-btn',
+            'type'  => 'button',
+            'label' => 'Info',
+            'class' => 'btn-info pull-left'
+            );
+
+        $buttons[] = array(
+            'name'  => 'danger-btn',
+            'type'  => 'button',
+            'label' => 'Danger',
+            'class' => 'btn-danger pull-left'
+            );
+
         $form = $this->biform->initialize( array(
             'name'     => 'login',
             'action'   => current_url(),
             'fields'   => $fields,
+            'buttons'  => $buttons,
             'hiddens'  => array(
                 'goto' => $this->input->get('from'),
                 ),

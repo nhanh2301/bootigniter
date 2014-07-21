@@ -1,44 +1,57 @@
-/* Sticky footer styles
--------------------------------------------------- */
+
 html {
   position: relative;
   min-height: 100%;
 }
+
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 40px;
-}
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 40px;
-  background-color: #f5f5f5;
+  font-size: 13px;
+  padding-top: 40px;
 }
 
+.fa {
+  font-size: 14px;
+}
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+a,
+button,
+.btn {
+  &:active,
+  &:focus, {
+    outline: 0;
+  }
+}
 
-body > .container {
-  padding: 60px 15px 0;
+#body {
+  position: relative;
 }
 
 .container .text-muted {
   margin: 10px 0;
 }
 
-footer > .container {
-  padding-right: 15px;
-  padding-left: 15px;
+footer {
+  width: 100%;
+  height: 30px;
+  background-color: #fff;
+  border-top: 1px solid @navbar-default-border;
+
+  p {
+    margin: 6px 0;
+  }
 }
 
-footer p {
-  margin: 10px 0;
+.pace .pace-progress {
+  background: #29d;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  height: 2px;
+
+  .transition(width 1s);
 }
 
-code {
-  font-size: 80%;
+.pace-inactive {
+  display: none;
 }

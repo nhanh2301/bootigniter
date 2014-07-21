@@ -1,0 +1,137 @@
+
+
+#sidebar {
+  background: lighten(@navbar-default-bg, 2%);
+  border-right: 1px solid @navbar-default-border;
+  position: fixed;
+  top: 40px;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: visible;
+  z-index: (@zindex-navbar - 2);
+  &:extend(.clearfix all);
+  -webkit-overflow-scrolling: touch;
+  .box-shadow(~'1px 0 0 rgba(0,0,0,.05)');
+  .transition(width .35s ease);
+
+  &.in {
+    overflow-y: auto;
+    min-width: @bi-side-content-width;
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    display: block !important;
+    border-top: 0;
+    .box-shadow(~'none');
+
+    &.collapse {
+      display: block !important;
+      width: @bi-side-content-width !important;
+      padding-bottom: 0; // Override default setting
+    }
+
+    &.in {
+      overflow-y: visible;
+    }
+  }
+
+  &.collapsing {
+    width: 0;
+    height: auto;
+  }
+
+  .side-menu {
+    margin: 15px 0;
+  }
+}
+
+.nav-sidebar {
+  li {
+    margin-bottom: 1px;
+    list-style: none;
+    position: relative;
+
+    a {
+      padding: 7px 24px 7px 33px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #555;
+      display: block;
+      text-shadow: 0 1px 0 #fff;
+
+      .menu-icon {
+        margin-left: -18px;
+      }
+
+      .menu-text {
+        line-height: 1.4em;
+      }
+    }
+
+    &:hover
+    &:focus,
+    &:active,
+    &.active {
+      > a {
+        background-color: #eee;
+      }
+    }
+
+    &.active:hover {
+      > a {
+        &,
+        .menu-toggle {
+          cursor: default;
+        }
+      }
+    }
+
+    .menu-toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 24px;
+      border: 0;
+      text-align: center;
+      height: 32px;
+      background: transparent;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: @brand-primary;
+      }
+
+      .fa:before {
+        content: "\f0d8";
+      }
+
+      &.collapsed .fa:before {
+        content: "\f0d7";
+      }
+    }
+
+    .submenu {
+      margin: 1px 0 0 16px;
+      padding: 0;
+
+      li {
+        a {
+          text-decoration: none;
+          padding: 6px 24px;
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          > a {
+            background-color: #eee;
+          }
+        }
+      }
+    }
+  }
+}

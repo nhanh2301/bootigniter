@@ -24,15 +24,16 @@ $config['biasset_path_prefix'] = 'asset/';
 */
 
 $config['biasset_autoload_style'] = array(
-    'font-awesome' => 'bower/font-awesome/css/font-awesome.min.css',
-    'bootstrap'    => 'bower/bootstrap/dist/css/bootstrap.min.css',
-    'bootigniter'  => 'css/bootigniter.min.css',
+    'font-awesome'      => 'bower/font-awesome/css/font-awesome.min.css',
+    'bootstrap'         => 'bower/bootstrap/dist/css/bootstrap.min.css',
+    'bootigniter'       => 'css/bootigniter.min.css',
     );
 
 $config['biasset_autoload_script'] = array(
-    'jquery'      => 'bower/jquery/dist/jquery.min.js',
-    'bootstrap'   => 'bower/bootstrap/dist/js/bootstrap.min.js',
-    'bootigniter' => 'js/bootigniter.min.js',
+    'jquery'            => 'bower/jquery/dist/jquery.min.js',
+    'bootstrap'         => 'bower/bootstrap/dist/js/bootstrap.min.js',
+    'bootigniter'       => 'js/bootigniter.min.js',
+    'pace'              => 'bower/pace/pace.min.js',
     );
 
 

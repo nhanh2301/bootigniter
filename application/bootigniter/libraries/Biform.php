@@ -202,12 +202,6 @@ class Biform
             $this->is_hform = $attrs['is_hform'];
         }
 
-        // make it horizontal form by default
-        if ( $this->is_hform == TRUE )
-        {
-            $this->_attrs['class'] .= ' form-horizontal';
-        }
-
         // set-up HTML5 role attribute
         $this->_attrs['role'] = 'form';
 
@@ -382,7 +376,7 @@ class Biform
      */
     public function set_buttons( array $buttons )
     {
-        if ( count( $buttons ) === 0 )
+        if ( !empty( $buttons ) )
         {
             foreach ( $buttons as $button_id => $attributes )
             {
@@ -457,6 +451,12 @@ class Biform
             unset( $this->_attrs['hiddens'] );
         }
 
+        // make it horizontal form by default
+        if ( $this->is_hform == TRUE )
+        {
+            $this->_attrs['class'] .= ' form-horizontal';
+        }
+
         $this->_attrs['class'] = trim( $this->_attrs['class'] );
 
         // Open up new form
@@ -529,7 +529,7 @@ class Biform
         if ( $type == 'hidden' )
         {
             // Form hidden
-            // CI form_hidden(  ) function
+            // CI form_hidden() function
             $html .= form_hidden( $name, $value );
         }
         else if ( $type == 'fieldset' )
@@ -544,7 +544,7 @@ class Biform
             // you form, be sure to close it befor call the new one.
             if ( $this->_counts['feildsets'] >= 1 )
             {
-                $html .= form_fieldset_close(  );
+                $html .= form_fieldset_close();
             }
 
             // If your attributes is string, turn it into an array
@@ -564,7 +564,7 @@ class Biform
         else if ( $type == 'subfield' )
         {
             $id                 = 'sub'.$id;
-            $errors             = array(  );
+            $errors             = array();
             $input              = '<div id="'.$id.'" class="row">';
             $field_attrs['for'] = 'field-sub'.str_replace( '_', '-', 'input-'.$name.'-'.$fields[0]['name'] );
 

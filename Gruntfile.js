@@ -200,7 +200,7 @@ module.exports = function(grunt) {
       // Run `jshint` & `jscs` only for *.js files
       frontscript: {
         files: '<%= jshint.frontscript.src %>',
-        tasks: [ 'jshint', 'jscs' ]
+        tasks: [ 'jstest', 'jsdist' ]
       },
     }
 

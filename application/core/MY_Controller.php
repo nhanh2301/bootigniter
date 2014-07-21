@@ -17,6 +17,8 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
 
+        set_script( 'pace', 'bower/pace/pace.min.js', '0.5.5', '', FALSE );
+
         $this->data['panel_title']  = '';
         $this->data['panel_body']   = '';
 

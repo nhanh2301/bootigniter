@@ -21,32 +21,32 @@ class Auth extends MY_Controller
         $attempts = ( $this->bootigniter->get_setting('auth_login_count_attempts') AND ($attempts = $this->input->post('username'))) ? $this->security->xss_clean($attempts) : '';
 
         $fields[] = array(
-            'name'  => 'username',
-            'type'  => 'text',
-            'label' => _x('biauth_login_by_'.login_by()),
-            'validation'=> 'required' );
+            'name'       => 'username',
+            'type'       => 'text',
+            'label'      => _x('biauth_login_by_'.login_by()),
+            'validation' => 'required' );
 
         $fields[] = array(
-            'name'  => 'password',
-            'type'  => 'password',
-            'label' => 'Password',
-            'validation'=> 'required' );
+            'name'       => 'password',
+            'type'       => 'password',
+            'label'      => 'Password',
+            'validation' => 'required' );
 
         $fields[] = array(
-            'name'  => 'remember',
-            'type'  => 'checkbox',
-            'label' => '',
-            'option'=> array( 1 => 'Ingat saya dikomputer ini.' ) );
+            'name'       => 'remember',
+            'type'       => 'checkbox',
+            'label'      => '',
+            'options'    => array( 1 => 'Ingat saya dikomputer ini.' ) );
 
         if ( $this->biauth->login_attempt->is_max_exceeded( $attempts ) )
         {
             $captcha = (bool) $this->bootigniter->get_setting('auth_use_recaptcha') ? 'recaptcha' : 'captcha';
 
             $fields[] = array(
-                'name'  => $captcha,
-                'type'  => $captcha,
-                'label' => 'Validasi',
-                'validation'=> 'required|valid_'.$captcha);
+                'name'       => $captcha,
+                'type'       => $captcha,
+                'label'      => 'Validasi',
+                'validation' => 'required|valid_'.$captcha);
         }
 
         $buttons[] = array(
@@ -123,28 +123,28 @@ class Auth extends MY_Controller
         }
 
         $fields[] = array(
-            'name'  => 'display',
-            'type'  => 'text',
-            'label' => 'Display',
-            'validation'=> 'required' );
+            'name'       => 'display',
+            'type'       => 'text',
+            'label'      => 'Display',
+            'validation' => 'required' );
 
         $fields[] = array(
-            'name'  => 'email',
-            'type'  => 'text',
-            'label' => 'Email',
-            'validation'=> 'required|valid_email' );
+            'name'       => 'email',
+            'type'       => 'text',
+            'label'      => 'Email',
+            'validation' => 'required|valid_email' );
 
         $fields[] = array(
-            'name'  => 'password',
-            'type'  => 'password',
-            'label' => 'Password',
-            'validation'=> 'required|valid_password_length' );
+            'name'       => 'password',
+            'type'       => 'password',
+            'label'      => 'Password',
+            'validation' => 'required|valid_password_length' );
 
         $fields[] = array(
-            'name'  => 'confirm-password',
-            'type'  => 'password',
-            'label' => 'Ulangi Password',
-            'validation'=> 'required|matches[password]' );
+            'name'       => 'confirm-password',
+            'type'       => 'password',
+            'label'      => 'Ulangi Password',
+            'validation' => 'required|matches[password]' );
 
         // if ( (bool) $this->bootigniter->get_setting('auth_captcha_registration') )
         // {
@@ -369,16 +369,16 @@ class Auth extends MY_Controller
         }
 
         $fields[] = array(
-            'name'  => 'reset_password',
-            'type'  => 'password',
-            'label' => 'Password baru',
-            'validation'=> 'required|valid_password_length' );
+            'name'       => 'reset_password',
+            'type'       => 'password',
+            'label'      => 'Password baru',
+            'validation' => 'required|valid_password_length' );
 
         $fields[] = array(
-            'name'  => 'confirm_reset_password',
-            'type'  => 'password',
-            'label' => 'Password Konfirmasi',
-            'validation'=> 'required|matches[reset_password]' );
+            'name'       => 'confirm_reset_password',
+            'type'       => 'password',
+            'label'      => 'Password Konfirmasi',
+            'validation' => 'required|matches[reset_password]' );
 
         $buttons[] = array(
             'name'  => 'submit',
@@ -419,7 +419,7 @@ class Auth extends MY_Controller
         }
 
         $this->data['panel_body'] = $form->generate();
-        $this->data['page_body'] = '';
+        $this->data['page_body']  = '';
 
         $this->load->theme('auth', $this->data);
     }

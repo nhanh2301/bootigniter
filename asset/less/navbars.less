@@ -1,0 +1,107 @@
+
+
+.navbar-top {
+  min-height: 40px;
+  background-color: @navbar-default-bg;
+  border-color: @navbar-default-border;
+  margin-bottom: 0;
+  .box-shadow(~'0 1px 1px rgba(0,0,0,.05)');
+
+  @media (min-width: @grid-float-breakpoint) {
+    #gradient .vertical(#ffffff; #f6f6f6);
+  }
+
+  .navbar-header {
+    #gradient .vertical(#ffffff; #f6f6f6);
+
+    > .navbar-brand {
+      width: 100%;
+      height: 40px;
+      padding: 4px @navbar-padding-horizontal 5px;
+      font-weight: 700;
+      font-size: 24px;
+      text-align: center;
+      line-height: 1.3em;
+
+      @media (min-width: @grid-float-breakpoint) {
+        background: transparent;
+        text-align: left;
+      }
+    }
+
+    @media (min-width: @grid-float-breakpoint) {
+      border-right: 1px solid @navbar-default-border;
+      width: (@bi-side-content-width - @navbar-padding-horizontal);
+    }
+  }
+
+  .sidebar-toggle,
+  .navbar-toggle {
+    display: block;
+    padding: 10px 12px;
+    margin: 0 4px;
+    position: absolute;
+    top: 0;
+
+    @media (min-width: @grid-float-breakpoint) {
+      display: none;
+    }
+  }
+
+  .sidebar-toggle {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    left: 0;
+  }
+
+  .navbar-toggle {
+    right: 0;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navbar-form {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    @media (min-width: @grid-float-breakpoint) {
+      width: 210px !important;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      padding: 0 15px;
+    }
+
+    .form-group {
+      display: table;
+      width: 100%;
+      border-collapse: separate;
+
+      // @media (min-width: @grid-float-breakpoint) {
+      //   width: 210px !important;
+      // }
+
+      .form-control,
+      .btn {
+        display: table-cell;
+        border-color: #ddd;
+        white-space: nowrap;
+        vertical-align: middle;
+      }
+
+      .form-control {
+        border-right: 0;
+        .border-right-radius(0);
+      }
+
+      .btn {
+        .border-left-radius(0);
+      }
+    }
+  }
+}

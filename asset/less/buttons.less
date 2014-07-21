@@ -1,0 +1,75 @@
+.btn {
+  height: 28px;
+  .button-size(4px; 10px; 13px; @line-height-base; 3px);
+  .transition(~"border-color ease-in-out .1s, box-shadow ease-in-out .1s");
+
+  &,
+  &:active,
+  &.active {
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &:hover {
+    .box-shadow(~'inset 0 0 0px 1px rgba(255,255,255,.2)');
+  }
+
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(~'inset 0 3px 5px rgba(0,0,0,.125)');
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: not-allowed;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.65);
+    .box-shadow(none);
+  }
+}
+
+// Alternate buttons
+// --------------------------------------------------
+
+.btn-default {
+  #gradient .vertical((lighten(@gray-lighter, 8%)); @gray-lighter);
+  // .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+
+.btn-primary {
+  #gradient .vertical((lighten(@btn-primary-bg, 8%)); @btn-primary-bg);
+  // .button-variant(@btn-primary-color; @btn-primary-bg; @btn-primary-border);
+}
+
+// Success appears as green
+.btn-success {
+  #gradient .vertical((lighten(@btn-success-bg, 8%)); @btn-success-bg);
+  // .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+}
+
+// Info appears as blue-green
+.btn-info {
+  #gradient .vertical((lighten(@btn-info-bg, 8%)); @btn-info-bg);
+  // .button-variant(@btn-info-color; @btn-info-bg; @btn-info-border);
+}
+
+// Warning appears as orange
+.btn-warning {
+  #gradient .vertical((lighten(@btn-warning-bg, 8%)); @btn-warning-bg);
+  // .button-variant(@btn-warning-color; @btn-warning-bg; @btn-warning-border);
+}
+
+// Danger and error appear as red
+.btn-danger {
+  #gradient .vertical((lighten(@btn-danger-bg, 8%)); @btn-danger-bg);
+  // .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
+}

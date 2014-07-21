@@ -1,0 +1,76 @@
+//== Panels
+//
+//##
+
+.panel {
+  border-radius: @bi-panel-border-radius;
+
+  // Optional heading
+  &-heading {
+    &:extend(.clearfix all);
+    padding: @bi-panel-heading-padding;
+    .border-top-radius((@bi-panel-border-radius - 1));
+  }
+
+  // Optional heading
+  &-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 1.4em;
+    color: #555;
+  }
+
+  // Panel contents
+  &-body {
+    padding: @panel-body-padding;
+    &:extend(.clearfix all);
+  }
+
+  // Optional footer (stays gray in every modifier class)
+  &-footer {
+    &:extend(.clearfix all);
+    .border-bottom-radius((@bi-panel-border-radius - 1));
+  }
+
+  // Contextual variations
+  &-default {
+    border-color: @navbar-default-border;
+
+    .panel-heading {
+      border-color: @navbar-default-border;
+      #gradient .vertical((lighten(@gray-lighter, 8%)); @gray-lighter);
+    }
+  }
+
+  &-primary {
+    .panel-heading {
+      #gradient .vertical((lighten(@brand-primary, 8%)); @brand-primary);
+    }
+  }
+
+  &-success {
+    .panel-heading {
+      #gradient .vertical((lighten(@state-success-bg, 8%)); @state-success-bg);
+    }
+  }
+
+  &-info {
+    .panel-heading {
+      #gradient .vertical((lighten(@state-info-bg, 8%)); @state-info-bg);
+    }
+  }
+
+  &-warning {
+    .panel-heading {
+      #gradient .vertical((lighten(@state-warning-bg, 8%)); @state-warning-bg);
+    }
+  }
+
+  &-danger {
+    .panel-heading {
+      #gradient .vertical((lighten(@state-danger-bg, 8%)); @state-danger-bg);
+    }
+  }
+}

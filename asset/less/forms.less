@@ -1,25 +1,93 @@
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 3px 0 0;
+}
 
-.radio input[type=radio],
-.radio-inline input[type=radio],
-.checkbox input[type=checkbox],
-.checkbox-inline input[type=checkbox] {
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
   margin-left: 0;
 }
 
-.radio label, .checkbox label {
-  padding-left: 20px;
+.radio,
+.checkbox {
+  label {
+    padding-left: 20px;
+  }
+}
+
+input[type="number"] {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    height: auto;
+  }
+}
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="month"] {
+  padding-right: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  font-family: inherit;
+  font-size: inherit;
+  height: 28px;
+  border-radius: 3px;
+  .transition(~"border-color ease-in-out .15s, box-shadow ease-in-out .15s");
+
+  &-feedback {
+    width: 28px;
+    height: 28px;
+    right: 5px;
+  }
+
+  &-select2 {
+    padding: 0;
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    padding: 4px 10px;
+
+    &-feedback {
+      line-height: 28px;
+    }
+  }
+}
+
+.form-horizontal {
+  .control-label {
+    padding-top: 6px;
+    width: 100%;
+  }
+
+  .radio,
+  .checkbox {
+    min-height: 26px;
+    padding-top: 5px;
+  }
+
+  .has-feedback .form-control-feedback {
+    right: 5px;
+  }
 }
 
 .form-action {
   margin-bottom: 0;
   padding-top: 10px;
-  border-top: 1px solid @input-border;
+  border-top: 1px solid @panel-default-border;
 
   .btn {
     margin-left: @padding-base-horizontal;
-  }
 
-  .btn:first-child {
-    margin-left: 0;
+    &:first-child {
+      margin-left: 0;
+    }
   }
 }
