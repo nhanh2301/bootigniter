@@ -11,9 +11,6 @@ html {
 body {
   padding-top: 40px;
   font-size: 13px;
-  -webkit-transition: all .35s ease;
-       -o-transition: all .35s ease;
-          transition: all .35s ease;
   }
 @media (min-width: 768px) {
   body {
@@ -76,9 +73,6 @@ footer p {
   border-right: 1px solid #e7e7e7;
   -webkit-box-shadow: 1px 0 0 rgba(0,0,0,.05);
           box-shadow: 1px 0 0 rgba(0,0,0,.05);
-  -webkit-transition: width .35s ease;
-       -o-transition: width .35s ease;
-          transition: width .35s ease;
   }
 #sidebar.in {
   min-width: 240px;
@@ -103,6 +97,9 @@ footer p {
 #sidebar.collapsing {
   width: 0;
   height: auto;
+  -webkit-transition: width .35s ease;
+       -o-transition: width .35s ease;
+          transition: width .35s ease;
   }
 #sidebar .side-menu {
   margin: 15px 0;
