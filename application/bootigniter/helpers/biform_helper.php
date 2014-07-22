@@ -116,20 +116,6 @@ function add_placeholder( $array, $placeholder = '---', $langify = FALSE )
 
 // -----------------------------------------------------------------------------
 
-function form_search( $target )
-{
-    $output  = form_open( $target, array('name'=>'search-bar', 'method'=>'get'));
-    $output .= '<div class="input-group input-group-sm">';
-    $output .= form_input(array('name'=>'search', 'id'=>'search', 'value'=>set_value('search'), 'class'=>'form-control', 'type'=>'search'));
-    $output .= '<span class="input-group-btn">'.form_submit(array('id'=>'s','class'=>'btn btn-default', 'value'=>'Cari')).'</span>';
-    $output .= '</div><!-- /input-group -->';
-    $output .= form_close();
-
-    return $output;
-}
-
-// -----------------------------------------------------------------------------
-
 function form_alert()
 {
     $ci =& get_instance();

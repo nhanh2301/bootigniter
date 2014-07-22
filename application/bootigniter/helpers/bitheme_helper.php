@@ -302,6 +302,40 @@ function twbs_text($text, $class = '', $tag = 'span')
     return '<'.$tag.' class="text-'.$class.'">'.$text.'</'.$tag.'>';
 }
 
+// -----------------------------------------------------------------------------
+
+/**
+ * TWBS navbar search form
+ *
+ * @param   string  $target  Target url
+ * @return  string
+ */
+function twbs_navbar_search( $target = '' )
+{
+    $output = form_open( $target, array(
+                'name'         => 'search-bar',
+                'method'       => 'get',
+                'class'        => 'navbar-form navbar-left',
+                'role'         => 'search' ))
+            . '<div class="input-group">'
+            . form_input(array(
+                'name'         => 'navsearch',
+                'id'           => 'navsearch',
+                'value'        => set_value('navsearch'),
+                'class'        => 'form-control',
+                'type'         => 'search',
+                'placeholder'  => 'Search' ))
+            . '<span class="input-group-btn">'
+            . form_button(array(
+                'id'           => 's',
+                'class'        => 'btn btn-default',
+                'content'      => '<i class="fa fa-fw fa-search"></i>' ))
+            . '</span></div><!-- /input-group -->'
+            . form_close();
+
+    return $output;
+}
+
 // -------------------------------------------------------------------------
 
 /**

@@ -91,13 +91,21 @@
         }
       }
 
+      .dropdown {
+        .transition(all .35s ease);
+      }
+
       .dropdown-menu {
-        padding: 0 0 5px;
-        border-color: @input-border;
         font-size: inherit;
         font-family: inherit;
-        .border-bottom-radius(3px);
-        .box-shadow(~'0 3px 8px rgba(0,0,0,.175)');
+        background-color: @gray-lighter;
+
+        @media (min-width: @grid-float-breakpoint) {
+          padding: 0 0 5px;
+          border-color: @input-border;
+          .border-bottom-radius(3px);
+          .box-shadow(~'0 3px 8px rgba(0,0,0,.175)');
+        }
       }
     }
 

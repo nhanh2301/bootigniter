@@ -89,5 +89,15 @@ input[type="month"] {
     &:first-child {
       margin-left: 0;
     }
+
+    @media (max-width: @screen-xs-min) {
+      &.pull-left,
+      &.pull-right {
+        margin-left: 0;
+        width: 100%;
+        float: none;
+        margin-bottom: 4px;
+      }
+    }
   }
 }

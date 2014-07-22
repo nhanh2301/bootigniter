@@ -15,9 +15,17 @@
   min-height: 100%;
   height: auto !important;
   height: 100%;
-  margin: 0 auto -31px;
+  margin: 0 auto -50px;
 
   > .row {
-      padding-bottom: 30px;
+      padding-bottom: 49px;
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    margin: 0 auto -31px;
+
+    > .row {
+        padding-bottom: 30px;
+    }
   }
 }

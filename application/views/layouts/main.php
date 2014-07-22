@@ -12,14 +12,7 @@
             </button> <!-- .navbar-toggle -->
         </div>
         <div class="collapse navbar-collapse" role="navigation">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-fw fa-search"></i></button>
-                    </span>
-                </div>
-            </form>
+            <?php echo twbs_navbar_search() ?>
             <ul class="nav navbar-nav navbar-right" role="navigation">
                 <li><a href="#">
                     <i class="menu-icon fa fa-fw fa-user"></i>
@@ -90,7 +83,7 @@
             <li>
                 <a href="#">
                     <i class="menu-icon fa fa-fw fa-file"></i>
-                    <span class="menu-text"><span class="menu-text">Navigation menu</span></span>
+                    <span class="menu-text">Navigation menu</span>
                 </a>
             </li>
         </ul>
@@ -105,8 +98,8 @@
             <div class="row"><?php echo $contents ?></div> <!-- .row -->
         </section>
         <footer id="foots">
-            <p class="text-muted pull-left">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
-            <p class="text-muted pull-right"><?php echo config_item('application_name').' Ver. '.config_item('application_version') ?></p>
+            <p class="text-muted foot-left">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
+            <p class="text-muted foot-right"><?php echo config_item('application_name').' Ver. '.config_item('application_version') ?></p>
         </footer>
     </div>
 </div>
