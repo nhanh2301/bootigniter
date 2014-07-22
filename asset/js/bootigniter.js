@@ -34,4 +34,14 @@ $(document).ready(function () {
     }
   })
 
+  $('a').each(function () {
+    var anchor = $(this)
+
+    if (anchor.attr('href') == '#') {
+      anchor.on('click', function (e) {
+        e.preventDefault();
+      })
+    }
+  })
+
 });
