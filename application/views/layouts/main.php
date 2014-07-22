@@ -23,7 +23,7 @@
             <ul class="nav navbar-nav navbar-right" role="navigation">
                 <li><a href="#">
                     <i class="menu-icon fa fa-fw fa-user"></i>
-                    <span>User menu</span>
+                    <span class="hidden-sm">User menu</span>
                 </a></li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown">

@@ -17,7 +17,7 @@ body {
   }
 @media (min-width: 768px) {
   body {
-    padding-left: 260px !important;
+    padding-left: 240px !important;
     }
   }
 .fa {
@@ -81,7 +81,7 @@ footer p {
           transition: width .35s ease;
   }
 #sidebar.in {
-  min-width: 260px;
+  min-width: 240px;
   overflow-y: auto;
   }
 @media (min-width: 768px) {
@@ -93,7 +93,7 @@ footer p {
     }
   #sidebar.collapse {
     display: block !important;
-    width: 260px !important;
+    width: 240px !important;
     padding-bottom: 0;
     }
   #sidebar.in {
@@ -261,7 +261,7 @@ footer p {
   }
 @media (min-width: 768px) {
   .navbar-top .navbar-header {
-    width: 245px;
+    width: 225px;
     border-right: 1px solid #e7e7e7;
     }
   }
