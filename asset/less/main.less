@@ -7,10 +7,19 @@ html {
 body {
   font-size: 13px;
   padding-top: 40px;
+  .transition(all .35s ease);
+
+  @media (min-width: @grid-float-breakpoint) {
+    padding-left: @bi-side-content-width !important;
+  }
 }
 
 .fa {
   font-size: 14px;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
 }
 
 a,

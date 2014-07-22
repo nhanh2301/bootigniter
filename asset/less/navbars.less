@@ -22,6 +22,13 @@
       font-size: 24px;
       text-align: center;
       line-height: 1.3em;
+      color: #555;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: @brand-primary;
+      }
 
       @media (min-width: @grid-float-breakpoint) {
         background: transparent;
@@ -60,9 +67,45 @@
     right: 0;
   }
 
-  .navbar-nav > li > a {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  .navbar-nav {
+    > li {
+      > a {
+        font-weight: 700;
+        padding: 10px;
+        color: lighten(@gray-darker, 30%);
+        font-size: 13px;
+        text-shadow: 0 1px 0 #fff;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background: transparent;
+        }
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        > a {
+          color: @brand-primary;
+        }
+      }
+
+      .dropdown-menu {
+        padding: 0 0 5px;
+        border-color: @input-border;
+        font-size: inherit;
+        font-family: inherit;
+        .border-bottom-radius(3px);
+        .box-shadow(~'0 3px 8px rgba(0,0,0,.175)');
+      }
+    }
+
+    @media (min-width: @grid-float-breakpoint) {
+      &.navbar-right:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   .navbar-form {
@@ -81,10 +124,6 @@
       display: table;
       width: 100%;
       border-collapse: separate;
-
-      // @media (min-width: @grid-float-breakpoint) {
-      //   width: 210px !important;
-      // }
 
       .form-control,
       .btn {

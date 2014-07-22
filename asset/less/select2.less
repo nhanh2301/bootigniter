@@ -68,11 +68,24 @@
     .box-shadow(~"none");
 
     .select2-choice {
-      .border-bottom-radius(0);
 
       .select2-arrow {
         background: transparent;
         border-left: 1px solid transparent;
+      }
+    }
+
+    &.select2-drop {
+      .border-bottom-radius(0);
+    }
+
+    &.select2-drop-above {
+      .border-top-radius(0);
+
+      .select2-choice,
+      .select2-choices {
+        border: 0;
+        background: transparent;
       }
     }
   }
@@ -91,7 +104,7 @@
 
   &-drop {
     &-active {
-      border-color: @input-border;
+      border-color: @input-border !important;
     }
   }
 

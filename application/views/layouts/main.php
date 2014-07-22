@@ -21,16 +21,18 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right" role="navigation">
-                <li class="active dropdown">
+                <li><a href="#">
+                    <i class="menu-icon fa fa-fw fa-user"></i>
+                    <span>User menu</span>
+                </a></li>
+                <li class="dropdown">
                     <a href="#" data-toggle="dropdown">
                         <i class="menu-icon fa fa-fw fa-plus"></i>
-                        <span class="hidden-sm hidden-md">New Item</span>
+                        <span class="visible-xs-inline-block">New Item</span>
                         <span class="caret"></span>
                     </a>
                     <ul class="submenu dropdown-menu" role="menu">
-                        <li class="active">
-                            <a href="#">Navigation menu</a>
-                        </li>
+                        <li><a href="#">Navigation menu</a></li>
                         <li><a href="#">Navigation menu</a></li>
                     </ul>
                 </li>
@@ -42,17 +44,15 @@
                     <i class="menu-icon fa fa-fw fa-question-circle"></i>
                     <span class="visible-xs-inline-block">Help</span>
                 </a></li>
-                <li class="dropdown">
-                    <a href="#" data-toggle="dropdown">
-                        <i class="menu-icon fa fa-fw fa-user"></i>User menu<span class="caret"></span>
-                    </a>
-                    <ul class="submenu dropdown-menu" role="menu">
-                        <li><a href="#">Account Setting</a></li>
-                        <li><a href="#">Administration</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">logout</a></li>
-                    </ul>
-                </li>
+                <li class="divider"></li>
+                <li><a href="#">
+                    <i class="menu-icon fa fa-fw fa-cogs"></i>
+                    <span class="visible-xs-inline-block">Administration</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="menu-icon fa fa-fw fa-sign-out"></i>
+                    <span class="visible-xs-inline-block">Logout</span>
+                </a></li>
             </ul>
         </div>
     </div> <!-- .container -->
@@ -79,17 +79,18 @@
                             </button>
                         </a>
                         <ul id="subsubmenu1" class="submenu collapse" role="menu">
-                            <li class="active"><a href="#">Navigation menu</a></li>
-                            <li><a href="#">Navigation menu</a></li>
+                            <li class="active"><a href="#"><span class="menu-text">Navigation menu</span></a></li>
+                            <li><a href="#"><span class="menu-text">Navigation menu</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Navigation menu</a></li>
+                    <li><a href="#"><span class="menu-text">Navigation menu</span></a></li>
                 </ul>
             </li>
+            <li class="nav-divider"></li>
             <li>
                 <a href="#">
                     <i class="menu-icon fa fa-fw fa-file"></i>
-                    <span class="menu-text">Navigation menu</span>
+                    <span class="menu-text"><span class="menu-text">Navigation menu</span></span>
                 </a>
             </li>
         </ul>
