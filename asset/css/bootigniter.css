@@ -158,6 +158,7 @@ footer p {
 .nav-sidebar li:active > a,
 .nav-sidebar li.active > a {
   color: #428bca;
+  background-color: transparent;
   }
 .nav-sidebar li.active:hover > a {
   cursor: default;
