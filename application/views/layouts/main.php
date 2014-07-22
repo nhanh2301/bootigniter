@@ -8,7 +8,7 @@
             </button> <!-- .navbar-toggle -->
             <?php echo anchor(site_url(), config_item('application_name'), 'class="navbar-brand"') ?>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle Navbar</span><span class="fa fa-bars"></span>
+                <span class="sr-only">Toggle Navbar</span><span class="fa fa-cog"></span>
             </button> <!-- .navbar-toggle -->
         </div>
         <div class="collapse navbar-collapse" role="navigation">

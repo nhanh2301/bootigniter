@@ -4,9 +4,10 @@
  * Licensed under OSL (https://github.com/feryardiant/bootigniter/blob/master/license.md)
  */
 
-html {
+html,
+body {
   position: relative;
-  min-height: 100%;
+  height: 100%;
   }
 body {
   padding-top: 40px;
@@ -22,6 +23,7 @@ body {
   }
 * {
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   }
 a:active,
 button:active,
@@ -33,9 +35,6 @@ button:focus,
   }
 #body {
   position: relative;
-  }
-.container .text-muted {
-  margin: 10px 0;
   }
 footer {
   width: 100%;
@@ -207,8 +206,18 @@ footer p {
   width: 100%;
   height: 100%;
   }
-#main-content {
+#contents > .container-fluid {
+  height: 100%;
+  }
+#main-contents {
+  height: auto !important;
+  height: 100%;
+  min-height: 100%;
   padding-top: 15px;
+  margin: 0 auto -31px;
+  }
+#main-contents > .row {
+  padding-bottom: 30px;
   }
 .navbar-top {
   min-height: 40px;
