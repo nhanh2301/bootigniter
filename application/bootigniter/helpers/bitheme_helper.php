@@ -349,9 +349,15 @@ function twbs_navbar_search( $target = '' )
  *
  * @return  string
  */
-function twbs_set_columns($lg = NULL, $md = NULL, $sm = NULL, $xs = NULL, $xxs = NULL)
+function twbs_set_columns($lg = NULL, $md = NULL, $sm = NULL, $xs = NULL)
 {
     $grids = 12;
+    $cols = array(
+        'lg' => NULL,
+        'md' => NULL,
+        'sm' => NULL,
+        'xs' => NULL,
+        );
 
     for ($i = 1; $i <= $grids; $i++)
     {
@@ -360,42 +366,18 @@ function twbs_set_columns($lg = NULL, $md = NULL, $sm = NULL, $xs = NULL, $xxs =
 
     if (is_array($lg))
     {
-        $col = array_set_defaults($lg, array(
-            'lg'  => NULL,
-            'md'  => NULL,
-            'sm'  => NULL,
-            'xs'  => NULL,
-            ));
-
-        return twbs_set_columns($col['lg'], $col['md'], $col['sm'], $col['xs'], $col['xxs']);
+        $col = array_set_defaults($lg, $cols);
+        return twbs_set_columns($col['lg'], $col['md'], $col['sm'], $col['xs']);
     }
     else
     {
         $out = '';
-
-        if (!is_null($lg) and in_array($lg, $grid))
+        foreach ($cols as $col => $val)
         {
-            $out .= ' col-lg-'.$lg;
-        }
-
-        if (!is_null($md) and in_array($md, $grid))
-        {
-            $out .= ' col-md-'.$md;
-        }
-
-        if (!is_null($sm) and in_array($sm, $grid))
-        {
-            $out .= ' col-sm-'.$sm;
-        }
-
-        if (!is_null($xs) and in_array($xs, $grid))
-        {
-            $out .= ' col-xs-'.$xs;
-        }
-
-        if (!is_null($xxs) and in_array($xxs, $grid))
-        {
-            $out .= ' col-xxs-'.$xxs;
+            if (!is_null($$col) and in_array($$col, $grid))
+            {
+                $out .= ' col-'.$col.'-'.$$col;
+            }
         }
 
         return trim($out);

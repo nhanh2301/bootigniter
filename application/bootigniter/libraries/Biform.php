@@ -127,14 +127,14 @@ class Biform
         'label_class'   => "control-label",
         'label_col_lg'  => 3,
         'label_col_md'  => 3,
-        'label_col_sm'  => 3,
+        'label_col_sm'  => 4,
         'label_col_xs'  => 12,
         'field_open'    => "<div class='%s' %s>",
         'field_close'   => "</div>",
         'field_class'   => "form-control input",
         'field_col_lg'  => 9,
         'field_col_md'  => 9,
-        'field_col_sm'  => 9,
+        'field_col_sm'  => 8,
         'field_col_xs'  => 12,
         'buttons_class' => "btn",
         'required_attr' => " <abbr title='Field ini harus diisi'>*</abbr>",
@@ -1209,8 +1209,6 @@ class Biform
             $group_class .= ' '.$attrs['class'];
         }
 
-        $label_col = $this->is_hform ? twbs_set_columns( $label_col_lg, $label_col_md, $label_col_sm, $label_col_xs ) : '';
-        $input_col = $this->is_hform ? twbs_set_columns( $field_col_lg, $field_col_md, $field_col_sm, $field_col_xs ) : '';
 
         $group_attr = 'id="group-'.str_replace( '_', '-', $attrs['name'] ).'"';
 
@@ -1223,10 +1221,11 @@ class Biform
         $left_desc = ( isset( $attrs['left-desc'] ) and $attrs['left-desc'] == TRUE );
         $errors    = ( $is_error and !is_array( $attrs['desc'] ) ) ? $is_error : $attrs['desc'];
 
-        if ( $attrs['label'] != '' OR $this->is_hform )
+        if ( $attrs['label'] != '' )
         {
             // $label_class .= $label_col;
             $label_target = ( isset( $attrs['for'] ) ? $attrs['for'] : $attrs['id'] );
+            $label_col    = $this->is_hform ? twbs_set_columns( $label_col_lg, $label_col_md, $label_col_sm, $label_col_xs ) : '';
 
             $html .= '<div class="form-label '.$label_col.'">';
             $html .= form_label( $attrs['label'], $label_target, array( 'class'=> $label_class ) );
@@ -1239,6 +1238,7 @@ class Biform
             $html .= '</div>';
         }
 
+        $input_col = $this->is_hform ? twbs_set_columns( $field_col_lg, $field_col_md, $field_col_sm, $field_col_xs ) : '';
         $html .= sprintf( $field_open, 'form-input '.$input_col, '' ).$input;
 
         if ( !$left_desc )
